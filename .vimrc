@@ -56,7 +56,11 @@ set shiftwidth=4 "
 set expandtab
 
 set number
-colors peachpuff
+colors elflord
+
+" Use flake8 for python error checking
+let g:syntastic_check_on_open=1
+let g:syntastic_python_checker="flake8"
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -106,6 +110,8 @@ nnoremap <leader>t :bel :tabedit
 nnoremap <leader>s :bel :sp 
 nnoremap <leader>v :bel vsp 
 nnoremap <leader>n :tabnew<cr>
+nnoremap <leader>\ :nohl<cr>
+
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
