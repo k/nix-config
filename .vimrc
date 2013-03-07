@@ -53,6 +53,7 @@ let g:Powerline_symbols = 'fancy'
 
 set tabstop=4 " set tabstop at 4
 set shiftwidth=4 " 
+set expandtab
 
 set number
 colors peachpuff
@@ -99,8 +100,12 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 "Use jj to escape
-
 inoremap jj <Esc>
+
+nnoremap <leader>t :bel :tabedit 
+nnoremap <leader>s :bel :sp 
+nnoremap <leader>v :bel vsp 
+nnoremap <leader>n :tabnew<cr>
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
