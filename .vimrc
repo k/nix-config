@@ -34,6 +34,7 @@ Bundle 'Lokaltog/vim-powerline'
 Bundle 'jgoulah/cocoa.vim'
 Bundle 'msanders/snipmate.vim'
 Bundle 'vim-scripts/a.vim.git'
+Bundle 'kien/ctrlp.vim'
 
 filetype plugin indent on 
 
@@ -54,6 +55,10 @@ let g:Powerline_symbols = 'fancy'
 set tabstop=4 " set tabstop at 4
 set shiftwidth=4 " 
 set expandtab
+set smartcase
+set autoindent
+set smartindent
+
 
 set number
 colors elflord
@@ -81,7 +86,8 @@ set incsearch		" do incremental searching
 " Don't use Ex mode, use Q for formatting
 map Q gq
 
-map <C-m> :Listmethods
+" map <C-m> :Listmethods Used for Cocoa, not working
+
 set pastetoggle=<F10>
 inoremap <C-v> <F10><C-r>+<F10>
 vnoremap <C-c> "+y
@@ -111,6 +117,10 @@ nnoremap <leader>s :bel :sp
 nnoremap <leader>v :bel vsp 
 nnoremap <leader>n :tabnew<cr>
 nnoremap <leader>\ :nohl<cr>
+nnoremap <leader>l <C-w>l
+nnoremap <leader>j <C-w>j
+nnoremap <leader>k <C-w>k
+nnoremap <leader>h <C-w>h
 
 
 " Only do this part when compiled with support for autocommands.
@@ -168,3 +178,19 @@ set foldenable
 "Set up an HTML5 template for all new .html files
 autocmd BufNewFile * silent! 0r $VIMHOME/templates/%:e.tpl
 
+"comment lines
+fu! CommentLineANSI()
+    if empty(matchstr(getline('.'),'^\s*/\*.*\*/\s*'))
+        :s/^\(.*\)$/\/*\1*\//
+        else
+            :s/^\/\*\(.*\)\*\//\1/
+        endif
+            :silen! /dskfldsjkldd
+endfunction
+fu! CommentBlock()
+    :'< s/^/\/*/
+    :'> s/$/*\//
+endfu
+nmap <C-_> :call CommentLineANSI()<CR>
+imap <C-_> <C-0> :call CommentLineANSI()<CR>
+vmap <C-_> :call CommentLineANSI()<CR>gv
