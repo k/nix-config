@@ -1,0 +1,10 @@
+\documentclass[12pt]{article}
+
+\title{Template}
+\author{Kenneth Bambridge}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\end{document}
