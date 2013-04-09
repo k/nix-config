@@ -10,6 +10,7 @@
 		BD9D977F170FDBCC00666CD6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD9D977E170FDBCC00666CD6 /* Foundation.framework */; };
 		BD9D9782170FDBCC00666CD6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BD9D9781170FDBCC00666CD6 /* main.m */; };
 		BD9D9786170FDBCC00666CD6 /* idk.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = BD9D9785170FDBCC00666CD6 /* idk.1 */; };
+		BD9D978E170FDE1800666CD6 /* idk.m in Sources */ = {isa = PBXBuildFile; fileRef = BD9D978D170FDE1800666CD6 /* idk.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +32,8 @@
 		BD9D9781170FDBCC00666CD6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BD9D9784170FDBCC00666CD6 /* idk-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "idk-Prefix.pch"; sourceTree = "<group>"; };
 		BD9D9785170FDBCC00666CD6 /* idk.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = idk.1; sourceTree = "<group>"; };
+		BD9D978C170FDE1800666CD6 /* idk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = idk.h; sourceTree = "<group>"; };
+		BD9D978D170FDE1800666CD6 /* idk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = idk.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +77,8 @@
 			isa = PBXGroup;
 			children = (
 				BD9D9781170FDBCC00666CD6 /* main.m */,
+				BD9D978C170FDE1800666CD6 /* idk.h */,
+				BD9D978D170FDE1800666CD6 /* idk.m */,
 				BD9D9785170FDBCC00666CD6 /* idk.1 */,
 				BD9D9783170FDBCC00666CD6 /* Supporting Files */,
 			);
@@ -140,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD9D9782170FDBCC00666CD6 /* main.m in Sources */,
+				BD9D978E170FDE1800666CD6 /* idk.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,6 +248,7 @@
 				BD9D978B170FDBCC00666CD6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

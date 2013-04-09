@@ -35,6 +35,7 @@ Bundle 'jgoulah/cocoa.vim'
 Bundle 'msanders/snipmate.vim'
 Bundle 'vim-scripts/a.vim.git'
 Bundle 'kien/ctrlp.vim'
+Bundle 'template.vim'
 
 filetype plugin indent on 
 

@@ -1,5 +1,5 @@
 alias ilabs='ssh kmb394@vi.rutgers.edu'
-alias ls='ls --color=always'
+alias ls='ls -G'
 alias ll='ls -al'
 alias la='ls -a'
 
