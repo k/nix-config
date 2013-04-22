@@ -1,5 +1,5 @@
 alias ilabs='ssh kmb394@vi.rutgers.edu'
-alias ls='ls -G'
+alias ls='ls --color=always'
 alias ll='ls -al'
 alias la='ls -a'
 
@@ -25,3 +25,5 @@ Purple='\e[0;45m' # Purple
 Cyan='\e[0;36m' # Cyan
 
 White='\e[0;37m' # White
+
+export PS1='[\u@\h \W]\$ '
