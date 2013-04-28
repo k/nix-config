@@ -1,2 +1,7 @@
 backups
+*~
+vim/bundle/*
+*.swp
+*.swo
+
 
