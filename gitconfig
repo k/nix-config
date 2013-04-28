@@ -1,0 +1,7 @@
+[user]
+	name = thekenner33
+	email = k.bambridge@me.com
+[credential]
+	helper = osxkeychain
+[core]
+	excludesfile = /Users/kennethbambridge/.gitignore_global
