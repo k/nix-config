@@ -5,3 +5,5 @@
 	helper = osxkeychain
 [core]
 	excludesfile = /Users/kennethbambridge/.gitignore_global
+[push]
+	default = simple
