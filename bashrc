@@ -27,3 +27,4 @@ Cyan='\e[0;36m' # Cyan
 White='\e[0;37m' # White
 
 source ~/.bashrc_custom
+source ~/.git-completion.bash
