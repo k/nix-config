@@ -27,11 +27,11 @@ alias monitor-dell 1440x900
 # APPLICATION ALIASES AND BINDINGS
 # -------------------------------------------------------------------
 
-alias editor 'Xcode'
-bind x:alt;shift focus ${editor}
+alias editor 'iTerm'
+bind z:alt;shift focus ${editor}
 
-alias terminal 'iTerm'
-bind z:alt;shift focus ${terminal}
+alias terminal 'Xcode'
+bind x:alt;shift focus ${terminal}
 
 alias browser 'Google Chrome'
 bind c:alt;shift focus ${browser}
@@ -39,16 +39,17 @@ bind c:alt;shift focus ${browser}
 alias vm 'VMware Fusion'
 bind v:alt;shift focus ${vm}
 
-alias email 'Mail'
-bind a:alt;shift focus ${email}
+bind t:alt;shift focus 'iTunes'
+
+bind a:alt;shift focus 'Mail'
 
 bind s:alt;shift focus 'Messages'
 
-bind d:alt;shift focus 'HipChat'
+bind d:alt;shift focus 'Preview'
 
-bind t:alt;shift focus 'iTunes'
+bind f:alt;shift focus 'Finder'
 
-#bind v:cmd;shift focus 'nvALT'
+bind v:cmd;shift focus 'nvALT'
 
 
 # SLATE FEATURES
@@ -62,6 +63,9 @@ bind h:${hyper} hint ASDFHJKLQWERTYUIOPCVBNG
 
 # Show a positioning grid for each monitor
 bind space:ctrl grid padding:5 0:6,2 1:8,4
+
+# Show a positioning grid for each monitor
+bind g:${hyper} grid padding:5 0:8,4 1:8,3
 
 # Better application switcher
 # bind tab:cmd switch
@@ -130,6 +134,7 @@ bind j:${hyper} ${topleft}
 
 alias topright move screenOriginX+screenSizeX/2;screenOriginY-screenSizeY/2 screenSizeX/2;screenSizeY/2
 bind k:${hyper} ${topright}
+
 # MONITOR-BASED POSITION ALIASES
 # -------------------------------------------------------------------
 # These aliases are move windows to specific positions on a specific 
