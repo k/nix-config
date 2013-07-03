@@ -1,4 +1,3 @@
-
 " An example for a vimrc file.
 "
 " Maintainer:	Bram Moolenaar <Bram@vim.org>
@@ -31,11 +30,14 @@ Bundle 'gmarik/vundle'
 " original repos on github
 Bundle 'scrooloose/syntastic'
 Bundle 'Lokaltog/vim-powerline'
-Bundle 'jgoulah/cocoa.vim'
-Bundle 'msanders/snipmate.vim'
 Bundle 'vim-scripts/a.vim.git'
 Bundle 'kien/ctrlp.vim'
 Bundle 'template.vim'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-surround'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdtree'
+Bundle 'tpope/vim-git'
 
 filetype plugin indent on 
 
@@ -53,6 +55,8 @@ let g:Powerline_symbols = 'fancy'
  " NOTE: comments after Bundle command are not allowed..
 
 
+:set tags=~/mytags
+
 set tabstop=4 " set tabstop at 4
 set shiftwidth=4 " 
 set expandtab
@@ -60,6 +64,9 @@ set smartcase
 set autoindent
 set smartindent
 
+" Shows all options
+set wildmenu
+set wildmode=longest,list,full
 
 set number
 colors elflord
@@ -70,6 +77,12 @@ let g:syntastic_python_checker="flake8"
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
+
+" Git
+nnoremap <leader>gc :Gcommit
+nnoremap <leader>gb :Gblame
+nnoremap <leader>gd :Gdiff
+nnoremap <leader>gl :Glog
 
 if has("vms")
   set nobackup		" do not keep a backup file, use versions instead
@@ -90,8 +103,8 @@ map Q gq
 " map <C-m> :Listmethods Used for Cocoa, not working
 
 set pastetoggle=<F10>
-inoremap <C-v> <F10><C-r>+<F10>
-vnoremap <C-c> "+y
+inoremap <leader>v <F10> :r !pbpaste <F10>
+vnoremap <C-c> :.!pbcopy
 map <C-k> :exec("CocoaDoc ".expand("<cword>"))<CR>
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
@@ -165,6 +178,7 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
 		  \ | wincmd p | diffthis
 endif
+
 "Bubble single lines (kicks butt)
 "http://vimcasts.org/episodes/bubbling-text/
 nmap <C-Up> ddkP
@@ -195,3 +209,5 @@ endfu
 nmap <C-_> :call CommentLineANSI()<CR>
 imap <C-_> <C-0> :call CommentLineANSI()<CR>
 vmap <C-_> :call CommentLineANSI()<CR>gv
+
+nmap <leader>d :NERDTreeToggle<CR>

@@ -20,7 +20,7 @@ alias hyper ctrl;alt;cmd
 # MONITOR ALIASES
 # -------------------------------------------------------------------
 
-alias monitor-macbook 1280x800
+alias monitor-macbook 1440x900
 alias monitor-dell 1440x900
 
 
@@ -35,6 +35,9 @@ bind x:alt;shift focus ${terminal}
 
 alias browser 'Google Chrome'
 bind c:alt;shift focus ${browser}
+
+alias vm 'VMware Fusion'
+bind v:alt;shift focus ${vm}
 
 bind t:alt;shift focus 'iTunes'
 
@@ -56,7 +59,10 @@ bind v:cmd;shift focus 'nvALT'
 config windowHintsShowIcons true
 config windowHintsSpread true
 config windowHintsIgnoreHiddenWindows false
-bind h:cmd;shift hint ASDFHJKLQWERTYUIOPCVBNG
+bind h:${hyper} hint ASDFHJKLQWERTYUIOPCVBNG
+
+# Show a positioning grid for each monitor
+bind space:ctrl grid padding:5 0:6,2 1:8,4
 
 # Show a positioning grid for each monitor
 bind g:${hyper} grid padding:5 0:8,4 1:8,3
@@ -115,6 +121,19 @@ alias bottomhalf move screenOriginX;screenOriginY+screenSizeY/2 screenSizeX;scre
 bind pad2:${hyper} ${bottomhalf}
 bind 2:${hyper} ${bottomhalf}
 
+# Now for the corners
+
+alias bottomleft move screenOriginX;screenOriginY+screenSizeY/2 screenSizeX/2;screenSizeY/2
+bind n:${hyper} ${bottomleft}
+
+alias bottomright move screenOriginX+screenSizeX/2;screenOriginY+screenSizeY/2 screenSizeX/2;screenSizeY/2
+bind m:${hyper} ${bottomright}
+
+alias topleft move screenOriginX;screenOriginY-screenSizeY/2 screenSizeX/2;screenSizeY/2
+bind j:${hyper} ${topleft}
+
+alias topright move screenOriginX+screenSizeX/2;screenOriginY-screenSizeY/2 screenSizeX/2;screenSizeY/2
+bind k:${hyper} ${topright}
 
 # MONITOR-BASED POSITION ALIASES
 # -------------------------------------------------------------------
@@ -183,13 +202,13 @@ default 1monitors resolutions:${monitor-macbook}
 # https://github.com/jigish/slate/blob/master/Slate/default.slate
 
 # Focus 
-bind right:cmd;ctrl    focus right
-bind left:cmd;ctrl     focus left
-bind up:cmd;ctrl       focus behind
-bind down:cmd;ctrl     focus behind
-bind ]:alt;shift       focus right
-bind [:alt;shift       focus left
-bind =:alt;shift       focus behind
+# bind right:cmd;ctrl    focus right
+# bind left:cmd;ctrl     focus left
+# bind up:cmd;ctrl       focus behind
+# bind down:cmd;ctrl     focus behind
+# bind ]:alt;shift       focus right
+# bind [:alt;shift       focus left
+# bind =:alt;shift       focus behind
 
 # Throw
 bind ]:${hyper} throw right resize full
