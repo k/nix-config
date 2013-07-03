@@ -103,9 +103,8 @@ map Q gq
 " map <C-m> :Listmethods Used for Cocoa, not working
 
 set pastetoggle=<F10>
-inoremap <leader>v <F10> :r !pbpaste <F10>
+inoremap <leader>p <F10> :r !pbpaste <F10>
 vnoremap <C-c> :.!pbcopy
-map <C-k> :exec("CocoaDoc ".expand("<cword>"))<CR>
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
