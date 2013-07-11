@@ -73,7 +73,9 @@ colors elflord
 
 " Use flake8 for python error checking
 let g:syntastic_check_on_open=1
-let g:syntastic_python_checker="pep8"
+let g:syntastic_python_checkers=["pep8","flake8"]
+let g:syntastic_python_pep8_args='--max-line-length=100'
+let g:syntastic_python_flake8_args='--max-line-length=100'
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
