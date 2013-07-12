@@ -1,6 +1,6 @@
 alias ilabs='ssh kmb394@vi.rutgers.edu'
 alias ls='ls -G'
-alias ll='ls -al'
+alias ll='ls -alrth'
 alias la='ls -a'
 
 # Sexy Bash Prompt, inspired by "Extravagant Zsh Prompt"
@@ -53,6 +53,7 @@ export LS_COLORS
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/bin:/usr/local/heroku/bin:$PATH"
+export EDITOR="vim"
 
 Black='\e[0;30m' # Black
 

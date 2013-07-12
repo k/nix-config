@@ -73,7 +73,10 @@ colors elflord
 
 " Use flake8 for python error checking
 let g:syntastic_check_on_open=1
-let g:syntastic_python_checker="pep8"
+let g:syntastic_javascript_checkers=['jsl']
+let g:syntastic_python_checkers=["pep8","flake8"]
+let g:syntastic_python_pep8_args='--max-line-length=100'
+let g:syntastic_python_flake8_args='--max-line-length=100'
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -130,11 +133,16 @@ nnoremap <leader>s :bel :sp
 nnoremap <leader>v :bel vsp 
 nnoremap <leader>n :tabnew<cr>
 nnoremap <leader>\ :nohl<cr>
-nnoremap <leader>l <C-w>l
-nnoremap <leader>j <C-w>j
-nnoremap <leader>k <C-w>k
-nnoremap <leader>h <C-w>h
+nnoremap <C-l> <C-w>l
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
 
+" Fix keycodes
+map ^[[1~ <Home>
+map ^[[4~ <End>
+imap ^[[1~ <Home>
+imap ^[[4~ <End>
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
