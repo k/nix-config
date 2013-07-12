@@ -1,6 +1,6 @@
 alias ilabs='ssh kmb394@vi.rutgers.edu'
 alias ls='ls -G'
-alias ll='ls -al'
+alias ll='ls -alrth'
 alias la='ls -a'
 
 # Sexy Bash Prompt, inspired by "Extravagant Zsh Prompt"

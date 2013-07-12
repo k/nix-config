@@ -138,6 +138,11 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 
+" Fix keycodes
+map ^[[1~ <Home>
+map ^[[4~ <End>
+imap ^[[1~ <Home>
+imap ^[[4~ <End>
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
