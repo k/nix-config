@@ -49,7 +49,11 @@ bind d:alt;shift focus 'Preview'
 
 bind f:alt;shift focus 'Finder'
 
-bind v:cmd;shift focus 'nvALT'
+bind v:alt;shift focus 'nvALT'
+
+bind p:alt;shift focus 'Pocket'
+
+bind w:alt;shift focus 'Preview'
 
 
 # SLATE FEATURES

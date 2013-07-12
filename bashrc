@@ -53,6 +53,7 @@ export LS_COLORS
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/bin:/usr/local/heroku/bin:$PATH"
+export EDITOR="vim"
 
 Black='\e[0;30m' # Black
 
