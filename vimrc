@@ -212,3 +212,9 @@ imap <C-_> <C-0> :call CommentLineANSI()<CR>
 vmap <C-_> :call CommentLineANSI()<CR>gv
 
 nmap <leader>d :NERDTreeToggle<CR>
+
+
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<c-t>'],
+    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+    \ }
