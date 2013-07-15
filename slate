@@ -45,11 +45,15 @@ bind a:alt;shift focus 'Mail'
 
 bind s:alt;shift focus 'Messages'
 
-bind d:alt;shift focus 'Preview'
+bind d:alt;shift focus 'HipChat'
 
 bind f:alt;shift focus 'Finder'
 
-bind v:cmd;shift focus 'nvALT'
+bind v:alt;shift focus 'nvALT'
+
+bind p:alt;shift focus 'Pocket'
+
+bind w:alt;shift focus 'Preview'
 
 
 # SLATE FEATURES

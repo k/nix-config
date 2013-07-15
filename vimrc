@@ -73,6 +73,7 @@ colors elflord
 
 " Use flake8 for python error checking
 let g:syntastic_check_on_open=1
+let g:syntastic_javascript_checkers=['jsl']
 let g:syntastic_python_checkers=["pep8","flake8"]
 let g:syntastic_python_pep8_args='--max-line-length=100'
 let g:syntastic_python_flake8_args='--max-line-length=100'
@@ -127,16 +128,26 @@ endif
 "Use jj to escape
 inoremap jj <Esc>
 
+" Faster split / tab commands
 nnoremap <leader>t :bel :tabedit 
 nnoremap <leader>s :bel :sp 
 nnoremap <leader>v :bel vsp 
 nnoremap <leader>n :tabnew<cr>
-nnoremap <leader>\ :nohl<cr>
-nnoremap <leader>l <C-w>l
-nnoremap <leader>j <C-w>j
-nnoremap <leader>k <C-w>k
-nnoremap <leader>h <C-w>h
 
+" Clear highlights
+nnoremap <leader>\ :nohl<cr>
+
+" Pane mobility
+nnoremap <C-l> <C-w>l
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+
+" Fix keycodes
+map ^[[1~ <Home>
+map ^[[4~ <End>
+imap ^[[1~ <Home>
+imap ^[[4~ <End>
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
@@ -191,6 +202,7 @@ vmap <C-Down> xp`[V`]
 set timeoutlen=500
 "allow code folding
 set foldenable
+
 "Set up an HTML5 template for all new .html files
 autocmd BufNewFile * silent! 0r $VIMHOME/templates/%:e.tpl
 
@@ -213,8 +225,14 @@ vmap <C-_> :call CommentLineANSI()<CR>gv
 
 nmap <leader>d :NERDTreeToggle<CR>
 
-
+" Ctrl-p will now default to open in new tab
 let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("e")': ['<c-t>'],
     \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
     \ }
+
+" For local replace
+nnoremap gr gd[{V%:s/<C-R>///gc<left><left><left>
+
+" For global replace
+nnoremap gR gD:%s/<C-R>///gc<left><left><left>
