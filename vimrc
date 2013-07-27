@@ -73,7 +73,7 @@ colors elflord
 
 " Use flake8 for python error checking
 let g:syntastic_check_on_open=1
-let g:syntastic_javascript_checkers=['jsl']
+let g:syntastic_javascript_checkers=['jshint']
 let g:syntastic_python_checkers=["pep8","flake8"]
 let g:syntastic_python_pep8_args='--max-line-length=100'
 let g:syntastic_python_flake8_args='--max-line-length=100'
@@ -106,9 +106,10 @@ map Q gq
 " map <C-m> :Listmethods Used for Cocoa, not working
 
 set pastetoggle=<F10>
-inoremap <leader>p <F10> :r !pbpaste <F10>
-vnoremap <C-c> :.!pbcopy
-
+nmap <leader>p :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
+imap <leader>p <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
+nmap <leader>c :.w !pbcopy<CR><CR>
+vmap <leader>c :w !pbcopy<CR><CR>
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
