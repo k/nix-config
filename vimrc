@@ -129,11 +129,16 @@ endif
 "Use jj to escape
 inoremap jj <Esc>
 
+" Faster split / tab commands
 nnoremap <leader>t :bel :tabedit 
 nnoremap <leader>s :bel :sp 
 nnoremap <leader>v :bel vsp 
 nnoremap <leader>n :tabnew<cr>
+
+" Clear highlights
 nnoremap <leader>\ :nohl<cr>
+
+" Pane mobility
 nnoremap <C-l> <C-w>l
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -198,6 +203,7 @@ vmap <C-Down> xp`[V`]
 set timeoutlen=500
 "allow code folding
 set foldenable
+
 "Set up an HTML5 template for all new .html files
 autocmd BufNewFile * silent! 0r $VIMHOME/templates/%:e.tpl
 
@@ -219,3 +225,15 @@ imap <C-_> <C-0> :call CommentLineANSI()<CR>
 vmap <C-_> :call CommentLineANSI()<CR>gv
 
 nmap <leader>d :NERDTreeToggle<CR>
+
+" Ctrl-p will now default to open in new tab
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<c-t>'],
+    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+    \ }
+
+" For local replace
+nnoremap gr gd[{V%:s/<C-R>///gc<left><left><left>
+
+" For global replace
+nnoremap gR gD:%s/<C-R>///gc<left><left><left>
