@@ -38,6 +38,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-git'
+Bundle 'digitaltoad/vim-jade'
 
 filetype plugin indent on 
 
@@ -64,7 +65,18 @@ set smartcase
 set autoindent
 set smartindent
 
-" Shows all options
+" But tab should be 2 spaces in HTML and Smarty templates
+ autocmd FileType html
+   \ setlocal shiftwidth=2 |
+   \ setlocal tabstop=2
+ autocmd FileType smarty  
+   \ setlocal shiftwidth=2 |
+   \ setlocal tabstop=2
+ autocmd FileType jade 
+   \ setlocal shiftwidth=2 |
+   \ setlocal tabstop=2
+
+"  Shows all options
 set wildmenu
 set wildmode=longest,list,full
 
