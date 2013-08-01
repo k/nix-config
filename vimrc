@@ -55,9 +55,6 @@ let g:Powerline_symbols = 'fancy'
  " see :h vundle for more details or wiki for FAQ
  " NOTE: comments after Bundle command are not allowed..
 
-
-:set tags=~/mytags
-
 set tabstop=4 " set tabstop at 4
 set shiftwidth=4 " 
 set expandtab
