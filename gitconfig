@@ -13,3 +13,7 @@
     diff = auto
     branch = auto
     interactive = auto
+[init]
+	templatedir = ~/.git_template
+[alias]
+	ctags = !.git/hooks/ctags
