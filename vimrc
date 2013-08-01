@@ -76,7 +76,9 @@ let g:syntastic_check_on_open=1
 let g:syntastic_javascript_checkers=['jsl']
 let g:syntastic_python_checkers=["pep8","flake8"]
 let g:syntastic_python_pep8_args='--max-line-length=100'
+let g:syntastic_python_pep8_post_args='--ignore=E125'
 let g:syntastic_python_flake8_args='--max-line-length=100'
+let g:syntastic_python_flake8_post_args='--ignore=E125'
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
