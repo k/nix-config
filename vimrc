@@ -116,11 +116,11 @@ map Q gq
 
 " map <C-m> :Listmethods Used for Cocoa, not working
 
-set pastetoggle=<F10>
-nmap <leader>p :set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
-imap <leader>p <Esc>:set paste<CR>:r !pbpaste<CR>:set nopaste<CR>
-nmap <leader>c :.w !pbcopy<CR><CR>
-vmap <leader>c :w !pbcopy<CR><CR>
+set pastetoggle=<F10>CR
+nmap <leader>p :set paste<CR>"*p<CR>:set nopaste<CR>
+imap <leader>p <Esc>:set paste<CR>"*p<CR>:set nopaste<CR>
+nmap <leader>c ggVG"*yy
+vmap <leader>c "*y
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
