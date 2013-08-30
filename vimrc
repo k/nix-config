@@ -39,6 +39,7 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-git'
 Bundle 'digitaltoad/vim-jade'
+Bundle 'airblade/vim-gitgutter'
 
 filetype plugin indent on 
 
