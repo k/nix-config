@@ -45,10 +45,8 @@ Bundle 'kchmck/vim-coffee-script'
 Bundle 'tpope/vim-git' 
 " Window manager for vim splits
 Bundle 'captbaritone/dwm.vim' 
-Bundle 'qrps/lilypond-vim' 
 " Syntax and scripts for Lilypond
-Bundle 'Townk/vim-autoclose'
-" autoclose brackets
+Bundle 'qrps/lilypond-vim'
 
 filetype plugin indent on 
 
