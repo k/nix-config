@@ -90,6 +90,9 @@ filetype on
    \ setlocal noexpandtab
  autocmd FileType coffee
    \ setlocal noexpandtab
+ autocmd FileType ruby
+   \ setlocal tabstop=2 |
+   \ setlocal shiftwidth=2
 
 "  Shows all options
 set wildmenu
