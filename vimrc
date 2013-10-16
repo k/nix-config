@@ -40,6 +40,13 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'tpope/vim-git'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'airblade/vim-gitgutter'
+Bundle 'kchmck/vim-coffee-script'
+" Vim-Git: Highlight git files
+Bundle 'tpope/vim-git' 
+" Window manager for vim splits
+Bundle 'captbaritone/dwm.vim' 
+" Syntax and scripts for Lilypond
+Bundle 'qrps/lilypond-vim'
 
 filetype plugin indent on 
 
@@ -63,16 +70,27 @@ set smartcase
 set autoindent
 set smartindent
 
+filetype off
+set runtimepath+=/usr/local/bin/lilypond/current/vim/
+filetype on
+
 " But tab should be 2 spaces in HTML and Smarty templates
  autocmd FileType html
    \ setlocal shiftwidth=2 |
-   \ setlocal tabstop=2
+   \ setlocal tabstop=2 |
+   \ setlocal noexpandtab
  autocmd FileType smarty  
    \ setlocal shiftwidth=2 |
    \ setlocal tabstop=2
  autocmd FileType jade 
    \ setlocal shiftwidth=2 |
-   \ setlocal tabstop=2
+   \ setlocal tabstop=2 |
+   \ setlocal noexpandtab
+ autocmd FileType coffee
+   \ setlocal noexpandtab
+ autocmd FileType ruby
+   \ setlocal tabstop=2 |
+   \ setlocal shiftwidth=2
 
 "  Shows all options
 set wildmenu
@@ -89,6 +107,7 @@ let g:syntastic_python_pep8_args='--max-line-length=100'
 let g:syntastic_python_pep8_post_args='--ignore=E125'
 let g:syntastic_python_flake8_args='--max-line-length=100'
 let g:syntastic_python_flake8_post_args='--ignore=E125'
+let g:syntastic_c_cflags_file='~/.syntastic_c_flags'
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -249,3 +268,5 @@ nnoremap gr gd[{V%:s/<C-R>///gc<left><left><left>
 
 " For global replace
 nnoremap gR gD:%s/<C-R>///gc<left><left><left>
+
+highlight Pmenu ctermfg=green ctermbg=black
