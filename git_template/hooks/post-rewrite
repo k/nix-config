@@ -1,4 +1,4 @@
 #!/bin/sh
-cast "$1" in
+case "$1" in
     rebase) exec .git/hooks/post-merge;
 esac
