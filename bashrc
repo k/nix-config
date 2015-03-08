@@ -73,3 +73,4 @@ White='\e[0;37m' # White
 
 source ~/.git-completion.bash
 source ~/.bashrc_custom
+HISTCONTROL=ignoredups

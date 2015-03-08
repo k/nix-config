@@ -1,67 +1,56 @@
-" An example for a vimrc file.
-"
-" Maintainer:	Bram Moolenaar <Bram@vim.org>
-" Last change:	2008 Dec 17
-"
-" To use it, copy it to
-"     for Unix and OS/2:  ~/.vimrc
-"	      for Amiga:  s:.vimrc
-"  for MS-DOS and Win32:  $VIM\_vimrc
-"	    for OpenVMS:  sys$login:.vimrc
-
-" When started as "evim", evim.vim will already have done these settings.
-if v:progname =~? "evim"
-  finish
-endif
-
 set nocompatible
+filetype off
 " Use Vim settings, rather than Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-filetype off
+Plugin 'gmarik/vundle'
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-Bundle 'gmarik/vundle'
-
-" My Bundles here:
+" My Plugins here:
 "
 " original repos on github
-Bundle 'scrooloose/syntastic'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'vim-scripts/a.vim.git'
-Bundle 'kien/ctrlp.vim'
-Bundle 'template.vim'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-surround'
-Bundle 'scrooloose/nerdcommenter'
-Bundle 'scrooloose/nerdtree'
-Bundle 'tpope/vim-git'
-Bundle 'digitaltoad/vim-jade'
-Bundle 'airblade/vim-gitgutter'
-Bundle 'kchmck/vim-coffee-script'
+Plugin 'scrooloose/syntastic'
+Plugin 'bling/vim-airline'
+Plugin 'vim-scripts/a.vim.git'
+Plugin 'kien/ctrlp.vim'
+Plugin 'jeetsukumaran/vim-buffergator'
+Plugin 'template.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-git' 
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'digitaltoad/vim-jade'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'kchmck/vim-coffee-script'
+" Jedi - python compiling
+Plugin 'davidhalter/jedi-vim'
 " Vim-Git: Highlight git files
-Bundle 'tpope/vim-git' 
 " Window manager for vim splits
-Bundle 'captbaritone/dwm.vim' 
+Plugin 'captbaritone/dwm.vim' 
 " Syntax and scripts for Lilypond
-Bundle 'qrps/lilypond-vim'
+Plugin 'qrps/lilypond-vim'
 
+call vundle#end()
 filetype plugin indent on 
 
-set laststatus=2   " Always show the statusline
-set encoding=utf-8 " Necessary to show Unicode glyphs
-let g:Powerline_symbols = 'fancy'
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
 
- " Brief help
- " :BundleList          - list configured bundles
- " :BundleInstall(!)    - install(update) bundles
- " :BundleSearch(!) foo - search(or refresh cache first) for foo
- " :BundleClean(!)      - confirm(or auto-approve) removal of unused bundles
- "
- " see :h vundle for more details or wiki for FAQ
- " NOTE: comments after Bundle command are not allowed..
+set nobackup
+set nowritebackup
+
+filetype off
 
 set tabstop=4 " set tabstop at 4
 set shiftwidth=4 " 
@@ -69,10 +58,6 @@ set expandtab
 set smartcase
 set autoindent
 set smartindent
-
-filetype off
-set runtimepath+=/usr/local/bin/lilypond/current/vim/
-filetype on
 
 " But tab should be 2 spaces in HTML and Smarty templates
  autocmd FileType html
@@ -99,48 +84,20 @@ set wildmode=longest,list,full
 set number
 colors elflord
 
-" Use flake8 for python error checking
-let g:syntastic_check_on_open=1
-let g:syntastic_javascript_checkers=['jshint']
-let g:syntastic_python_checkers=["pep8","flake8"]
-let g:syntastic_python_pep8_args='--max-line-length=100'
-let g:syntastic_python_pep8_post_args='--ignore=E125'
-let g:syntastic_python_flake8_args='--max-line-length=100'
-let g:syntastic_python_flake8_post_args='--ignore=E125'
-let g:syntastic_c_cflags_file='~/.syntastic_c_flags'
-
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-" Git
-nnoremap <leader>gc :Gcommit
-nnoremap <leader>gb :Gblame
-nnoremap <leader>gd :Gdiff
-nnoremap <leader>gl :Glog
-
-if has("vms")
-  set nobackup		" do not keep a backup file, use versions instead
-else
-  set backup		" keep a backup file
-endif
 set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
-
-" For Win32 GUI: remove 't' flag from 'guioptions': no tearoff menu entries
-" let &guioptions = substitute(&guioptions, "t", "", "g")
-
-" Don't use Ex mode, use Q for formatting
-map Q gq
-
-" map <C-m> :Listmethods Used for Cocoa, not working
 
 set pastetoggle=<F10>CR
 nmap <leader>p :set paste<CR>"*p<CR>:set nopaste<CR>
 imap <leader>p <Esc>:set paste<CR>"*p<CR>:set nopaste<CR>
 nmap <leader>c ggVG"*yy
 vmap <leader>c "*y
+
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
 inoremap <C-U> <C-G>u<C-U>
@@ -157,29 +114,8 @@ if &t_Co > 2 || has("gui_running")
   set hlsearch
 endif
 
-"Use jj to escape
-inoremap jj <Esc>
-
-" Faster split / tab commands
-nnoremap <leader>t :bel :tabedit 
-nnoremap <leader>s :bel :sp 
-nnoremap <leader>v :bel vsp 
-nnoremap <leader>n :tabnew<cr>
-
 " Clear highlights
 nnoremap <leader>\ :nohl<cr>
-
-" Pane mobility
-nnoremap <C-l> <C-w>l
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-
-" Fix keycodes
-map ^[[1~ <Home>
-map ^[[4~ <End>
-imap ^[[1~ <Home>
-imap ^[[4~ <End>
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
@@ -235,9 +171,6 @@ set timeoutlen=500
 "allow code folding
 set foldenable
 
-"Set up an HTML5 template for all new .html files
-autocmd BufNewFile * silent! 0r $VIMHOME/templates/%:e.tpl
-
 "comment lines
 fu! CommentLineANSI()
     if empty(matchstr(getline('.'),'^\s*/\*.*\*/\s*'))
@@ -255,13 +188,7 @@ nmap <C-_> :call CommentLineANSI()<CR>
 imap <C-_> <C-0> :call CommentLineANSI()<CR>
 vmap <C-_> :call CommentLineANSI()<CR>gv
 
-nmap <leader>d :NERDTreeToggle<CR>
 
-" Ctrl-p will now default to open in new tab
-let g:ctrlp_prompt_mappings = {
-    \ 'AcceptSelection("e")': ['<c-t>'],
-    \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
-    \ }
 
 " For local replace
 nnoremap gr gd[{V%:s/<C-R>///gc<left><left><left>
@@ -270,3 +197,108 @@ nnoremap gr gd[{V%:s/<C-R>///gc<left><left><left>
 nnoremap gR gD:%s/<C-R>///gc<left><left><left>
 
 highlight Pmenu ctermfg=green ctermbg=black
+
+" Fix keycodes
+map ^[[1~ <Home>
+map ^[[4~ <End>
+imap ^[[1~ <Home>
+imap ^[[4~ <End>
+
+set laststatus=2   " Always show the statusline
+set encoding=utf-8 " Necessary to show Unicode glyphs
+
+filetype off
+set runtimepath+=/usr/local/bin/lilypond/current/vim/
+filetype on
+
+"" NERDTree
+nmap <leader>d :NERDTreeToggle<CR>
+
+"" SYNTASTIC
+" Use flake8 for python error checking
+let g:syntastic_check_on_open=1
+let g:syntastic_javascript_checkers=["jshint"]
+let g:syntastic_python_checkers=["pep8","flake8"]
+let g:syntastic_python_pep8_args='--max-line-length=100'
+let g:syntastic_python_pep8_post_args='--ignore=E125'
+let g:syntastic_python_flake8_args='--max-line-length=100'
+let g:syntastic_python_flake8_post_args='--ignore=E125'
+let g:syntastic_c_cflags_file='~/.syntastic_c_flags'
+
+"" Vim airline
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+
+"" CtrlP
+" Setup some default ignores
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site|node_modules)$',
+  \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
+\}
+
+" Use the nearest .git directory as the cwd
+" This makes a lot of sense if you are working on a project that is in version
+" control. It also supports works with .svn, .hg, .bzr.
+let g:ctrlp_working_path_mode = 'r'
+
+" Easy bindings for its various modes
+nmap <leader>bb :CtrlPBuffer<cr>
+nmap <leader>bm :CtrlPMixed<cr>
+nmap <leader>bs :CtrlPMRU<cr>
+
+"" Buffers
+" This allows buffers to be hidden if you've modified a buffer.
+" This is almost a must if you wish to use buffers in this way.
+set hidden
+
+" To open a new empty buffer
+" This replaces :tabnew which I used to bind to this mapping
+nmap <leader>t :enew<cr>
+
+" Move to the next buffer
+nmap <leader>l :bnext<CR>
+
+" Move to the previous buffer
+nmap <leader>h :bprevious<CR>
+
+" Close the current buffer and move to the previous one
+" This replicates the idea of closing a tab
+nmap <leader>bq :bp <BAR> bd #<CR>
+
+" Show all open buffers and their status
+nmap <leader>bl :ls<CR>
+
+nnoremap <leader>s :bel :sp 
+nnoremap <leader>v :bel vsp 
+nnoremap <leader>n :tabnew<cr>
+
+
+"" Buffergator
+" Use the right side of the screen
+let g:buffergator_viewport_split_policy = 'R'
+
+" I want my own keymappings...
+let g:buffergator_suppress_keymaps = 1
+
+" Looper buffers
+"let g:buffergator_mru_cycle_loop = 1
+
+" Go to the previous buffer open
+nmap <leader>jj :BuffergatorMruCyclePrev<cr>
+
+" Go to the next buffer open
+nmap <leader>kk :BuffergatorMruCycleNext<cr>
+
+" View the entire list of buffers open
+nmap <leader>bl :BuffergatorOpen<cr>
+
+" Shared bindings from Solution #1 from earlier
+nmap <leader>t :enew<cr>
+nmap <leader>bq :bp <BAR> bd #<cr>
+
+
+

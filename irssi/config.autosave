@@ -30,15 +30,6 @@ servers = (
     use_ssl = "no";
     ssl_verify = "no";
     autoconnect = "yes";
-  },
-  {
-    address = "zoku.irc.slack.com";
-    chatnet = "slack";
-    port = "6667";
-    password = "zoku.EwiKVr5t21N8hRMxetRA";
-    use_ssl = "yes";
-    ssl_verify = "no";
-    autoconnect = "yes";
   }
 );
 
@@ -110,12 +101,14 @@ chatnets = {
     nick = "thekenner33";
     autosendcmd = "/msg nickserv identify p1an0Jazzy ;wait 2000";
   };
-  slack = { type = "IRC"; nick = "kenny"; };
 };
 
 channels = (
+  { name = "#irssi"; chatnet = "ircnet"; autojoin = "No"; },
+  { name = "silc"; chatnet = "silc"; autojoin = "No"; },
   { name = "#ruhack"; chatnet = "Freenode"; autojoin = "Yes"; },
-  { name = "#iOSdev"; chatnet = "Freenode"; autojoin = "yes"; }
+  { name = "#objc"; chatnet = "Freenode"; autojoin = "Yes"; },
+  { name = "#iOSdev"; chatnet = "Freenode"; autojoin = "Yes"; }
 );
 
 aliases = {
@@ -285,7 +278,7 @@ settings = {
     user_name = "thekenner33";
     nick = "thekenner33";
   };
-  "fe-text" = { actlist_sort = "refnum"; term_force_colors = "ON"; };
+  "fe-text" = { actlist_sort = "refnum"; term_force_colors = "yes"; };
   "fe-common/core" = {
     autocreate_own_query = "no";
     autocreate_query_level = "DCCMSGS";
@@ -294,10 +287,7 @@ settings = {
     autoclose_windows = "yes";
     reuse_unused_windows = "no";
     theme = "revolutionary";
-    autolog = "yes";
   };
 };
 hilights = ( { text = "thekenner33"; nick = "yes"; word = "yes"; } );
 ignores = ( );
-set = "theme";
-logs = { };

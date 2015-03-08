@@ -43,9 +43,9 @@ bind t:alt;shift focus 'iTunes'
 
 bind a:alt;shift focus 'Mail'
 
-bind s:alt;shift focus 'Messages'
+bind s:alt;shift focus 'Slack'
 
-bind d:alt;shift focus 'HipChat'
+bind d:alt;shift focus 'Messages'
 
 bind f:alt;shift focus 'Finder'
 
