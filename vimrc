@@ -31,6 +31,7 @@ Plugin 'davidhalter/jedi-vim'
 Plugin 'captbaritone/dwm.vim' 
 " Syntax and scripts for Lilypond
 Plugin 'qrps/lilypond-vim'
+Plugin 'majutsushi/tagbar'
 
 call vundle#end()
 filetype plugin indent on 
@@ -257,7 +258,7 @@ set hidden
 
 " To open a new empty buffer
 " This replaces :tabnew which I used to bind to this mapping
-nmap <leader>t :enew<cr>
+nmap <leader>n :enew<cr>
 
 " Move to the next buffer
 nmap <leader>l :bnext<CR>
@@ -274,7 +275,7 @@ nmap <leader>bl :ls<CR>
 
 nnoremap <leader>s :bel :sp 
 nnoremap <leader>v :bel vsp 
-nnoremap <leader>n :tabnew<cr>
+nnoremap <leader>t :tabnew<cr>
 
 
 "" Buffergator
@@ -297,8 +298,10 @@ nmap <leader>kk :BuffergatorMruCycleNext<cr>
 nmap <leader>bl :BuffergatorOpen<cr>
 
 " Shared bindings from Solution #1 from earlier
-nmap <leader>t :enew<cr>
+nmap <leader>n :enew<cr>
 nmap <leader>bq :bp <BAR> bd #<cr>
+
+nmap <F8> :TagbarToggle<CR>
 
 
 
