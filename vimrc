@@ -32,7 +32,6 @@ Plugin 'captbaritone/dwm.vim'
 " Syntax and scripts for Lilypond
 Plugin 'qrps/lilypond-vim'
 Plugin 'majutsushi/tagbar'
-
 call vundle#end()
 filetype plugin indent on 
 
@@ -208,6 +207,7 @@ imap ^[[4~ <End>
 set laststatus=2   " Always show the statusline
 set encoding=utf-8 " Necessary to show Unicode glyphs
 
+"" Lilypond
 filetype off
 set runtimepath+=/usr/local/bin/lilypond/current/vim/
 filetype on
@@ -301,7 +301,9 @@ nmap <leader>bl :BuffergatorOpen<cr>
 nmap <leader>n :enew<cr>
 nmap <leader>bq :bp <BAR> bd #<cr>
 
+"" Tagbar
 nmap <F8> :TagbarToggle<CR>
+
 
 
 
