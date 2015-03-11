@@ -21,6 +21,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-git' 
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/nerdtree'
+Plugin 'majutsushi/tagbar'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'kchmck/vim-coffee-script'
@@ -31,7 +32,7 @@ Plugin 'davidhalter/jedi-vim'
 Plugin 'captbaritone/dwm.vim' 
 " Syntax and scripts for Lilypond
 Plugin 'qrps/lilypond-vim'
-Plugin 'majutsushi/tagbar'
+Plugin 'moll/vim-node'
 call vundle#end()
 filetype plugin indent on 
 
