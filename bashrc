@@ -2,6 +2,7 @@ alias ilabs='ssh kmb394@man.cs.rutgers.edu'
 alias ls='ls -G'
 alias ll='ls -alrth'
 alias la='ls -a'
+alias grep='grep --color'
 
 # Sexy Bash Prompt, inspired by "Extravagant Zsh Prompt"
 # Screenshot: http://cloud.gf3.ca/M5rG
@@ -74,3 +75,6 @@ White='\e[0;37m' # White
 source ~/.git-completion.bash
 source ~/.bashrc_custom
 HISTCONTROL=ignoredups
+
+export XCODE_INSTALL_USER="kenny@zoku.me"
+export XCODE_INSTALL_PASSWORD="p1an0Jazzy"
