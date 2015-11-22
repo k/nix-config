@@ -38,7 +38,7 @@ servers = (
     password = "zoku.EwiKVr5t21N8hRMxetRA";
     use_ssl = "yes";
     ssl_verify = "no";
-    autoconnect = "yes";
+    autoconnect = "no";
   }
 );
 
