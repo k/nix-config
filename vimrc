@@ -305,6 +305,5 @@ nmap <leader>bq :bp <BAR> bd #<cr>
 "" Tagbar
 nmap <F8> :TagbarToggle<CR>
 
-
-
-
+set exrc
+set secure
