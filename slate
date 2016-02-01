@@ -36,8 +36,8 @@ bind x:alt;shift focus ${terminal}
 alias browser 'Google Chrome'
 bind c:alt;shift focus ${browser}
 
-alias vm 'VMware Fusion'
-bind v:alt;shift focus ${vm}
+# alias vm 'VMware Fusion'
+# bind v:alt;shift focus ${vm}
 
 bind t:alt;shift focus 'iTunes'
 
@@ -49,11 +49,13 @@ bind d:alt;shift focus 'Messages'
 
 bind f:alt;shift focus 'Finder'
 
-bind v:alt;shift focus 'nvALT'
+bind v:alt;shift focus 'MacVim'
 
 bind p:alt;shift focus 'Pocket'
 
-bind w:alt;shift focus 'Preview'
+bind w:alt;shift focus 'WebStorm'
+
+bind q:alt;shift focus 'Quip'
 
 
 # SLATE FEATURES
