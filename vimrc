@@ -5,8 +5,6 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'gmarik/vundle'
-
 " My Plugins here:
 "
 " original repos on github
