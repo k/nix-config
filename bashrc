@@ -4,7 +4,10 @@ alias ll='ls -alrth'
 alias la='ls -a'
 alias grep='grep --color'
 
-eval $(thefuck --alias)
+if [ ! -z `which thefuck 2> /dev/null` ]
+then
+    eval $(thefuck --alias)
+fi
 
 # Sexy Bash Prompt, inspired by "Extravagant Zsh Prompt"
 # Screenshot: http://cloud.gf3.ca/M5rG
