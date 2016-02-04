@@ -1,6 +1,6 @@
 backups
 *~
-vim/bundle/*
+vim
 *.swp
 *.swo
 

@@ -8,6 +8,8 @@ call vundle#begin()
 " My Plugins here:
 "
 " original repos on github
+Plugin 'VundleVim/Vundle.vim'
+
 Plugin 'scrooloose/syntastic'
 Plugin 'bling/vim-airline'
 Plugin 'vim-scripts/a.vim.git'
