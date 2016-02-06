@@ -1,6 +1,6 @@
 #!/bin/bash
 
-ignore=( scripts backups install.sh )
+ignore=(README* scripts backups install.sh )
 
 DIR=`pwd`
 
