@@ -76,4 +76,9 @@ source ~/.git-completion.bash
 source ~/.bashrc_custom
 HISTCONTROL=ignoredups
 
+# Platform Specific
 
+if [[ $OSTYPE == "darwin"* ]]
+then
+    alias ctags="`brew --prefix`/bin/ctags"
+fi
