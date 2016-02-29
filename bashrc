@@ -1,8 +1,6 @@
-alias ilabs='ssh kmb394@man.cs.rutgers.edu'
-alias ls='ls -G'
-alias ll='ls -alrth'
-alias la='ls -a'
-alias grep='grep --color'
+# If not running interactively, don't do anything
+[[ "$-" != *i* ]] && return
+
 
 # Sexy Bash Prompt, inspired by "Extravagant Zsh Prompt"
 # Screenshot: http://cloud.gf3.ca/M5rG
@@ -72,13 +70,16 @@ Cyan='\e[0;36m' # Cyan
 
 White='\e[0;37m' # White
 
+# Source other bash configs
+
 source ~/.git-completion.bash
-source ~/.bashrc_custom
-HISTCONTROL=ignoredups
 
-# Platform Specific
-
-if [[ $OSTYPE == "darwin"* ]]
-then
-    alias ctags="`brew --prefix`/bin/ctags"
+if [ -f "${HOME}/.bashrc_custom" ]; then
+    source ~/.bashrc_custom
 fi
+
+if [ -f "${HOME}/.bash_aliases" ]; then
+  source "${HOME}/.bash_aliases"
+fi
+
+HISTCONTROL=ignoredups
