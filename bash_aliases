@@ -1,4 +1,4 @@
-alias ilabs='ssh kmb394@man.cs.rutgers.edu'
+alias ilabs='ssh man.cs.rutgers.edu'
 alias ls='ls -hF --color=tty'
 alias ll='ls -alrth'
 alias la='ls -a'
