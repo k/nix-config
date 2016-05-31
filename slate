@@ -68,10 +68,10 @@ config windowHintsIgnoreHiddenWindows false
 bind h:${hyper} hint ASDFHJKLQWERTYUIOPCVBNG
 
 # Show a positioning grid for each monitor
-bind space:ctrl grid padding:5 0:6,2 1:8,4
+# bind space:ctrl grid padding:5 0:6,2 1:8,4
 
 # Show a positioning grid for each monitor
-bind g:${hyper} grid padding:5 0:8,4 1:8,3
+# bind g:${hyper} grid padding:5 0:8,4 1:8,3
 
 # Better application switcher
 # bind tab:cmd switch

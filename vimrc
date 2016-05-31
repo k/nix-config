@@ -26,13 +26,12 @@ Plugin 'majutsushi/tagbar'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'kchmck/vim-coffee-script'
-" Jedi - python compiling
-Plugin 'davidhalter/jedi-vim'
-" Vim-Git: Highlight git files
 " Window manager for vim splits
 Plugin 'captbaritone/dwm.vim' 
 " Syntax and scripts for Lilypond
 Plugin 'qrps/lilypond-vim'
+" Pydoc integration
+Plugin 'fs111/pydoc.vim'
 Plugin 'moll/vim-node'
 call vundle#end()
 filetype plugin indent on 
@@ -84,6 +83,7 @@ set wildmenu
 set wildmode=longest,list,full
 
 set number
+set cursorline
 colors elflord
 
 " allow backspacing over everything in insert mode
@@ -108,6 +108,8 @@ inoremap <C-U> <C-G>u<C-U>
 if has('mouse')
   set mouse=a
 endif
+
+set dir=~/.vim/swp
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
@@ -190,13 +192,6 @@ nmap <C-_> :call CommentLineANSI()<CR>
 imap <C-_> <C-0> :call CommentLineANSI()<CR>
 vmap <C-_> :call CommentLineANSI()<CR>gv
 
-
-
-" For local replace
-nnoremap gr gd[{V%:s/<C-R>///gc<left><left><left>
-
-" For global replace
-nnoremap gR gD:%s/<C-R>///gc<left><left><left>
 
 highlight Pmenu ctermfg=green ctermbg=black
 
