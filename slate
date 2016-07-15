@@ -27,7 +27,7 @@ alias monitor-dell 1440x900
 # APPLICATION ALIASES AND BINDINGS
 # -------------------------------------------------------------------
 
-alias editor 'iTerm'
+alias editor 'iTerm2'
 bind z:alt;shift focus ${editor}
 
 alias terminal 'Xcode'

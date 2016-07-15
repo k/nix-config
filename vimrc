@@ -10,29 +10,63 @@ call vundle#begin()
 " original repos on github
 Plugin 'VundleVim/Vundle.vim'
 
+" Syntax checking
 Plugin 'scrooloose/syntastic'
+
+" Status line at bottom
 Plugin 'bling/vim-airline'
+
+" Switch from .h to .c files quickly
 Plugin 'vim-scripts/a.vim.git'
-Plugin 'kien/ctrlp.vim'
+
+" Search for files using C-P
+Plugin 'ctrlpvim/ctrlp.vim'
+
+" Show buffers at top and side list
 Plugin 'jeetsukumaran/vim-buffergator'
-Plugin 'template.vim'
+
+" Adds git functionality to vim
 Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-git' 
+
+" Macros for editing encapsulating chars 
+Plugin 'tpope/vim-surround'
+
+" Automatic session tracking
 Plugin 'tpope/vim-obsession'
+
+" Commenting macros
 Plugin 'scrooloose/nerdcommenter'
+
+" File System tree 
 Plugin 'scrooloose/nerdtree'
-Plugin 'majutsushi/tagbar'
-Plugin 'digitaltoad/vim-jade'
+
+" Shows +/-/~ in left column
 Plugin 'airblade/vim-gitgutter'
-Plugin 'kchmck/vim-coffee-script'
+
 " Window manager for vim splits
 Plugin 'captbaritone/dwm.vim' 
+
 " Syntax and scripts for Lilypond
 Plugin 'qrps/lilypond-vim'
 " Pydoc integration
 Plugin 'fs111/pydoc.vim'
-Plugin 'moll/vim-node'
+
+" Javascript, impoved syntax highlighting and indentation
+Plugin 'pangloss/vim-javascript'
+
+" Coffeescript support
+Plugin 'kchmck/vim-coffee-script'
+
+" YouCompleteMe code completion
+Plugin 'Valloric/YouCompleteMe'
+
+" Angular.js
+Plugin 'burnettk/vim-angular'
+
+" Search using Ack within vim
+Plugin 'mileszs/ack.vim'
+
 call vundle#end()
 filetype plugin indent on 
 
@@ -62,9 +96,13 @@ set smartindent
 
 " But tab should be 2 spaces in HTML and Smarty templates
  autocmd FileType html
-   \ setlocal shiftwidth=2 |
-   \ setlocal tabstop=2 |
-   \ setlocal noexpandtab
+   \ setlocal shiftwidth=4 |
+   \ setlocal tabstop=4 |
+   \ setlocal foldmethod=indent
+ autocmd FileType htmldjango
+   \ setlocal shiftwidth=4 |
+   \ setlocal tabstop=4 |
+   \ setlocal foldmethod=indent
  autocmd FileType smarty  
    \ setlocal shiftwidth=2 |
    \ setlocal tabstop=2
@@ -72,11 +110,13 @@ set smartindent
    \ setlocal shiftwidth=2 |
    \ setlocal tabstop=2 |
    \ setlocal noexpandtab
- autocmd FileType coffee
-   \ setlocal noexpandtab
  autocmd FileType ruby
    \ setlocal tabstop=2 |
    \ setlocal shiftwidth=2
+ autocmd FileType python
+   \ setlocal shiftwidth=4 |
+   \ setlocal tabstop=4 |
+   \ setlocal softtabstop=4
 
 "  Shows all options
 set wildmenu
@@ -85,6 +125,7 @@ set wildmode=longest,list,full
 set number
 set cursorline
 colors elflord
+
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -120,6 +161,9 @@ endif
 
 " Clear highlights
 nnoremap <leader>\ :nohl<cr>
+
+" Clear trailing whitespace
+nnoremap <leader>w :%s/\s\+$//<cr>
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
@@ -172,26 +216,6 @@ vmap <C-Up> xkP`[V`]
 vmap <C-Down> xp`[V`]
 "lowers the timeout after typing leader key
 set timeoutlen=500
-"allow code folding
-set foldenable
-
-"comment lines
-fu! CommentLineANSI()
-    if empty(matchstr(getline('.'),'^\s*/\*.*\*/\s*'))
-        :s/^\(.*\)$/\/*\1*\//
-        else
-            :s/^\/\*\(.*\)\*\//\1/
-        endif
-            :silen! /dskfldsjkldd
-endfunction
-fu! CommentBlock()
-    :'< s/^/\/*/
-    :'> s/$/*\//
-endfu
-nmap <C-_> :call CommentLineANSI()<CR>
-imap <C-_> <C-0> :call CommentLineANSI()<CR>
-vmap <C-_> :call CommentLineANSI()<CR>gv
-
 
 highlight Pmenu ctermfg=green ctermbg=black
 
@@ -202,7 +226,9 @@ imap ^[[1~ <Home>
 imap ^[[4~ <End>
 
 set laststatus=2   " Always show the statusline
-set encoding=utf-8 " Necessary to show Unicode glyphs
+
+" Ignore files
+set wildignore+=*/tmp/*,*.pyc,*.so,*.swp,*.zip,*/gen/*,*.tar.*
 
 "" Lilypond
 filetype off
@@ -215,12 +241,17 @@ nmap <leader>d :NERDTreeToggle<CR>
 "" SYNTASTIC
 " Use flake8 for python error checking
 let g:syntastic_check_on_open=1
+
+" JS
 let g:syntastic_javascript_checkers=["jshint"]
-let g:syntastic_python_checkers=["pep8","flake8"]
-let g:syntastic_python_pep8_args='--max-line-length=100'
-let g:syntastic_python_pep8_post_args='--ignore=E125'
-let g:syntastic_python_flake8_args='--max-line-length=100'
-let g:syntastic_python_flake8_post_args='--ignore=E125'
+
+" Coffee
+let g:syntastic_coffee_checkers=["coffeelint"]
+
+" Python
+let g:syntastic_python_checkers=["pep8"]
+
+" Cflags
 let g:syntastic_c_cflags_file='~/.syntastic_c_flags'
 
 "" Vim airline
@@ -263,10 +294,6 @@ nmap <leader>l :bnext<CR>
 " Move to the previous buffer
 nmap <leader>h :bprevious<CR>
 
-" Close the current buffer and move to the previous one
-" This replicates the idea of closing a tab
-nmap <leader>bq :bp <BAR> bd #<CR>
-
 " Show all open buffers and their status
 nmap <leader>bl :ls<CR>
 
@@ -292,14 +319,43 @@ nmap <leader>jj :BuffergatorMruCyclePrev<cr>
 nmap <leader>kk :BuffergatorMruCycleNext<cr>
 
 " View the entire list of buffers open
-nmap <leader>bl :BuffergatorOpen<cr>
+nmap <leader>ls :BuffergatorOpen<cr>
+cnoreabbrev ls :BuffergatorOpen
+
+" Override ls to use Buffergator
+cmap :ls<CR> BuffergatorOpen<CR>
 
 " Shared bindings from Solution #1 from earlier
 nmap <leader>n :enew<cr>
-nmap <leader>bq :bp <BAR> bd #<cr>
 
 "" Tagbar
 nmap <F8> :TagbarToggle<CR>
 
+"" YouCompleteMe
+
+nmap <leader>gt  :YcmCompleter<space>GoTo<CR>
+nmap <leader>gti :YcmCompleter<space>GoToInclude<CR>
+nmap <leader>gtm :YcmCompleter<space>GoToImplementation<CR>
+nmap <leader>gtd :YcmCompleter<space>GoToDefinition<CR>
+nmap <leader>gth :YcmCompleter<space>GoToDeclaration<CR>
+
+"" Ack.vim
+let g:ackprg = 'ag --vimgrep --smart-case'                                                   
+cnoreabbrev ag Ack                                                                           
+cnoreabbrev aG Ack                                                                           
+cnoreabbrev Ag Ack                                                                           
+cnoreabbrev AG Ack  
+
+"" TODO fix this if statement
+"if filereadable("~/.vimrc_local")
+source ~/.vimrc_local
+"endif
+
+if has('nvim')
+    tnoremap <Esc> <C-\><C-n>
+endif
+
+
 set exrc
 set secure
+
