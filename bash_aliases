@@ -3,6 +3,7 @@ alias ls='ls -hF --color=tty'
 alias ll='ls -alrth'
 alias la='ls -a'
 alias grep='grep --color'
+alias v='nvim'
 
 if [[ $OSTYPE == "darwin"* ]]
 then

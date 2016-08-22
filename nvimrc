@@ -3,7 +3,7 @@ set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim " path to dein.vim
 
 call dein#begin(expand('~/.vim/dein')) " plugins' root path
 call dein#add('Shougo/dein.vim')
-call dein#add('Shougo/vimproc.vim',
+call dein#add('Shougo/vimproc.vim', 
     \{'build': 'make'})
 
 " Dark powered asynchronous completion framework for neovim
