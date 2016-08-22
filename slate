@@ -27,7 +27,7 @@ alias monitor-dell 1440x900
 # APPLICATION ALIASES AND BINDINGS
 # -------------------------------------------------------------------
 
-alias editor 'iTerm'
+alias editor 'iTerm2'
 bind z:alt;shift focus ${editor}
 
 alias terminal 'Xcode'
@@ -39,9 +39,11 @@ bind c:alt;shift focus ${browser}
 # alias vm 'VMware Fusion'
 # bind v:alt;shift focus ${vm}
 
+bind d:alt;shift focus 'Dash'
+
 bind t:alt;shift focus 'iTunes'
 
-bind a:alt;shift focus 'Mail'
+bind a:alt;shift focus 'AppCode'
 
 bind s:alt;shift focus 'Slack'
 
