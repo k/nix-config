@@ -59,6 +59,8 @@ bind w:alt;shift focus 'WebStorm'
 
 bind q:alt;shift focus 'Quip'
 
+bind e:alt;shift focus 'Preview'
+
 
 # SLATE FEATURES
 # -------------------------------------------------------------------
