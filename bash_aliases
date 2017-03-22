@@ -7,6 +7,7 @@ alias v='nvim'
 
 if [[ $OSTYPE == "darwin"* ]]
 then
+    alias v='reattach-to-user-namespace -l nvim'
     alias ctags="`brew --prefix`/bin/ctags"
     alias ls='ls -G'
 fi
