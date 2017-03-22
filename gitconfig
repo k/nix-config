@@ -1,11 +1,11 @@
 [user]
 	name = Kenneth Bambridge
-	email = k.bambridge@me.com
+	email = kbambridge1@gmail.com
 [credential]
 	helper = osxkeychain
 [core]
 	excludesfile = ~/.gitignore_global
-	editor = /usr/bin/vim
+	editor = /usr/local/bin/vim
 [push]
 	default = current
 [color]
