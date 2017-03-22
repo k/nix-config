@@ -1,7 +1,7 @@
 set nocompatible
-set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim " path to dein.vim
+set runtimepath+=~/.config/nvim/dein/repos/github.com/Shougo/dein.vim " path to dein.vim
 
-call dein#begin(expand('~/.vim/dein')) " plugins' root path
+call dein#begin(expand('~/.config/nvim/dein')) " plugins' root path
 call dein#add('Shougo/dein.vim')
 call dein#add('Shougo/vimproc.vim', 
     \{'build': 'make'})
@@ -18,7 +18,7 @@ call dein#add('Shougo/neoyank.vim')
 call dein#add('neomake/neomake')
 
 " Like ctrlp but is customizable and integrates more sources
-call dein#add('Shougo/unite.vim')
+call dein#add('Shougo/denite.nvim')
 
 " Status line at bottom
 call dein#add('bling/vim-airline')
@@ -74,6 +74,19 @@ call dein#add('leafgarland/typescript-vim',
 call dein#add('Quramy/tsuquyomi',
     \{'on_ft': 'typescript'})
 
+" System Verilog syntax highlighting
+call dein#add('nachumk/systemverilog.vim',
+    \{'on_ft': ['verilog', 'systemverilog']})
+
+call dein#add('lervag/vimtex',
+            \{'on_ft': ['tex', 'latex']})
+
+call dein#add('vim-scripts/applescript.vim',
+    \{'on_ft': ['applescript']})
+
+call dein#add('daeyun/vim-matlab',
+    \{'on_ft': ['matlab']})
+
 call dein#end()
 filetype plugin indent on 
 
@@ -121,6 +134,9 @@ set number
 set cursorline
 colors elflord
 
+" Leaders
+let mapleader = ","
+let maplocalleader = "-"
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -129,6 +145,9 @@ set history=50		" keep 50 lines of command line history
 set ruler		" show the cursor position all the time
 set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
+
+" Set clipboard
+set clipboard=unnamed
 
 set pastetoggle=<F10>CR
 nmap <leader>p :set paste<CR>"*p<CR>:set nopaste<CR>
@@ -155,7 +174,7 @@ if &t_Co > 2 || has("gui_running")
 endif
 
 " Clear highlights
-nnoremap <leader>\ :nohl<cr>
+nnoremap <leader><leader> :nohl<cr>
 
 " Clear trailing whitespace
 nnoremap <leader>w :%s/\s\+$//<cr>
@@ -246,9 +265,23 @@ let g:neomake_coffee_enabled_makers=["coffeelint"]
 
 " Python
 let g:neomake_python_enabled_makers=["pep8"]
+let g:neomake_python_pep8_maker = {
+            \ 'args': ['--max-line-length=120']
+            \ }
 
 " Typescript
 let g:neomake_typescript_enabled_makers=["tslint", "tsc"]
+
+" Latex
+let g:neomake_tex_enabled_makers=["chktex"] " Remove lacheck because of erroneous output with verbatim sections
+
+let g:neomake_systemverilog_iverilog_maker = {
+            \ 'exe': 'iverilog',
+            \ 'args': ['-Wall', '-g2012'],
+            \ 'errorformat': '%f:%l:%c',
+            \ }
+
+let g:neomake_systemverilog_enabled_makers=["iverilog"]
 
 "" Vim airline
 " Enable the list of buffers
@@ -257,37 +290,48 @@ let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 
-"" Unite
+"" Denite
 
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
+" Change matchers.
+call denite#custom#source(
+\ 'file_mru', 'matchers', ['matcher_fuzzy', 'matcher_project_files'])
+call denite#custom#source(
+\ 'file_rec', 'matchers', ['matcher_cpsm'])
+
+" Custom denite mappings
+call denite#custom#map('insert', '<C-s>', '<denite:do_action:vsplitswitch>', 
+            \ 'noremap', 'nowait')
 
 if executable('ag')
-    let g:unite_source_grep_command = 'ag'
-    let g:unite_source_grep_default_opts =
+    let g:denite_source_grep_command = 'ag'
+    let g:denite_source_grep_default_opts =
     \ '-i --vimgrep --hidden --ignore ' .
     \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
-    let g:unite_source_grep_recursive_opt = ''
-    let g:unite_source_rec_async_command =
+    let g:denite_source_grep_recursive_opt = ''
+    let g:denite_source_rec_async_command =
             \ ['ag', '--follow', '--nocolor', '--nogroup',
             \ '--hidden', '-g', '']
 endif
 
-" File searching (CtrlP)
-nnoremap <silent> ,ug :Unite file_rec/git<cr>
-nnoremap <C-p> :Unite file_rec/neovim<cr>
-nnoremap <space>/ :Unite grep:.<cr>
+" File searching (CtrlP) (Custom with git
+call denite#custom#alias('source', 'file_rec/git', 'file_rec')
+call denite#custom#var('file_rec/git', 'command',
+            \ ['git', 'ls-files', '-co', '--exclude-standard'])
+nnoremap <silent> <C-p> :<C-u>Denite
+            \ `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
 
-" Reindex Unite
-nnoremap <F5> <Plug>(unite_remake)
+nnoremap <space>/ :Denite grep:.<cr>
+
+" Reindex Denite
+nnoremap <F5> <Plug>(denite_remake)
 
 " Yank history
-let g:unite_source_history_yank_enable = 1
-nnoremap <space>y :Unite history/yank<cr>
+let g:denite_source_history_yank_enable = 1
+nnoremap <space>y :Denite history/yank<cr>
 
 " Buffers View the entire list of buffers open
-nmap <leader>ls :Unite -quick-match buffer<cr>
-cnoreabbrev ls :Unite -quick-match buffer<cr>
+nnoremap <space>ls :Denite -quick-match buffer<cr>
+cnoreabbrev ls :Denite -quick-match buffer<cr>
 
 "" Buffers
 " This allows buffers to be hidden if you've modified a buffer.
@@ -316,6 +360,36 @@ nmap <F8> :TagbarToggle<CR>
 
 "" Deoplete
 let g:deoplete#enable_at_startup = 1
+
+"" Vimtex
+let g:vimtex_fold_enabled = 1
+nnoremap <localleader>lt :<c-u>Denite vimtex_toc<cr>
+nnoremap <localleader>ly :<c-u>Denite vimtex_labels<cr>
+
+let g:vimtex_view_general_viewer
+            \ = '/Applications/Skim.app/Contents/SharedSupport/displayline'
+let g:vimtex_view_general_options = '-r @line @pdf @tex'
+
+" This adds a callback hook that updates Skim after compilation
+let g:vimtex_latexmk_callback_hooks = ['UpdateSkim']
+function! UpdateSkim(status)
+    if !a:status | return | endif
+
+    let l:out = b:vimtex.out()
+    let l:tex = expand('%:p')
+    let l:cmd = [g:vimtex_view_general_viewer, '-r']
+    if !empty(system('pgrep Skim'))
+        call extend(l:cmd, ['-g'])
+    endif
+    if has('nvim')
+        call jobstart(l:cmd + [line('.'), l:out, l:tex])
+    elseif has('job')
+        call job_start(l:cmd + [line('.'), l:out, l:tex])
+    else
+        call system(join(l:cmd + [line('.'), shellescape(l:out), shellescape(l:tex)], ' '))
+    endif
+endfunction
+
 
 "" TODO fix this if statement
 "if filereadable("~/.vimrc_local")
