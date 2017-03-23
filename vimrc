@@ -1,4 +1,6 @@
-set nocompatible
+if &compatible
+    set nocompatible
+endif
 set runtimepath+=~/.vim/dein/repos/github.com/Shougo/dein.vim " path to dein.vim
 
 call dein#begin(expand('~/.vim/dein')) " plugins' root path
@@ -74,6 +76,10 @@ call dein#add('leafgarland/typescript-vim',
 call dein#add('Quramy/tsuquyomi',
     \{'on_ft': 'typescript'})
 
+" System Verilog syntax highlighting
+call dein#add('nachumk/systemverilog.vim',
+    \{'on_ft': ['verilog', 'systemverilog']})
+
 call dein#end()
 filetype plugin indent on 
 
@@ -131,6 +137,7 @@ set showcmd		" display incomplete commands
 set incsearch		" do incremental searching
 
 set pastetoggle=<F10>CR
+:let mapleader = ","
 nmap <leader>p :set paste<CR>"*p<CR>:set nopaste<CR>
 imap <leader>p <Esc>:set paste<CR>"*p<CR>:set nopaste<CR>
 nmap <leader>c ggVG"*yy
@@ -259,8 +266,8 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 
 "" Unite
 
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
-call unite#filters#sorter_default#use(['sorter_rank'])
+" call unite#filters#matcher_default#use(['matcher_fuzzy'])
+" call unite#filters#sorter_default#use(['sorter_rank'])
 
 if executable('ag')
     let g:unite_source_grep_command = 'ag'
