@@ -43,7 +43,8 @@ bind d:alt;shift focus 'Dash'
 
 bind t:alt;shift focus 'iTunes'
 
-bind a:alt;shift focus 'AppCode'
+bind a:alt;shift focus 'MATLAB'
+# bind a:alt;shift focus 'AppCode'
 
 bind s:alt;shift focus 'Slack'
 
@@ -53,13 +54,15 @@ bind f:alt;shift focus 'Finder'
 
 bind v:alt;shift focus 'MacVim'
 
-bind p:alt;shift focus 'Pocket'
+# bind p:alt;shift focus 'Pocket'
 
 bind w:alt;shift focus 'WebStorm'
 
 bind q:alt;shift focus 'Quip'
 
 bind e:alt;shift focus 'Preview'
+
+bind v:alt;shift focus 'MacVim'
 
 
 # SLATE FEATURES
@@ -75,7 +78,7 @@ bind h:${hyper} hint ASDFHJKLQWERTYUIOPCVBNG
 # bind space:ctrl grid padding:5 0:6,2 1:8,4
 
 # Show a positioning grid for each monitor
-# bind g:${hyper} grid padding:5 0:8,4 1:8,3
+bind g:${hyper} grid padding:5 0:8,4 1:8,3
 
 # Better application switcher
 # bind tab:cmd switch
