@@ -79,7 +79,7 @@ call dein#add('nachumk/systemverilog.vim',
     \{'on_ft': ['verilog', 'systemverilog']})
 
 call dein#add('lervag/vimtex',
-            \{'on_ft': ['tex', 'latex']})
+            \{'on_ft': ['tex', 'latex', 'plaintex']})
 
 call dein#add('vim-scripts/applescript.vim',
     \{'on_ft': ['applescript']})
@@ -100,7 +100,7 @@ set shiftwidth=4 "
 set expandtab
 set smartcase
 set autoindent
-set smartindent
+set nosmartindent
 
 " But tab should be 2 spaces in HTML and Smarty templates
  autocmd FileType html
@@ -151,7 +151,7 @@ set clipboard=unnamed
 
 set pastetoggle=<F10>CR
 nmap <leader>p :set paste<CR>"*p<CR>:set nopaste<CR>
-imap <leader>p <Esc>:set paste<CR>"*p<CR>:set nopaste<CR>
+"imap <leader>p <Esc>:set paste<CR>"*p<CR>:set nopaste<CR>
 nmap <leader>c ggVG"*yy
 vmap <leader>c "*y
 
@@ -302,15 +302,15 @@ call denite#custom#source(
 call denite#custom#map('insert', '<C-s>', '<denite:do_action:vsplitswitch>', 
             \ 'noremap', 'nowait')
 
+" Ag command on grep source
 if executable('ag')
-    let g:denite_source_grep_command = 'ag'
-    let g:denite_source_grep_default_opts =
-    \ '-i --vimgrep --hidden --ignore ' .
-    \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
-    let g:denite_source_grep_recursive_opt = ''
-    let g:denite_source_rec_async_command =
-            \ ['ag', '--follow', '--nocolor', '--nogroup',
-            \ '--hidden', '-g', '']
+	call denite#custom#var('grep', 'command', ['ag'])
+	call denite#custom#var('grep', 'default_opts',
+			\ ['-i', '--vimgrep'])
+	call denite#custom#var('grep', 'recursive_opts', [])
+	call denite#custom#var('grep', 'pattern_opt', [])
+	call denite#custom#var('grep', 'separator', ['--'])
+	call denite#custom#var('grep', 'final_opts', [])
 endif
 
 " File searching (CtrlP) (Custom with git
@@ -330,8 +330,8 @@ let g:denite_source_history_yank_enable = 1
 nnoremap <space>y :Denite history/yank<cr>
 
 " Buffers View the entire list of buffers open
-nnoremap <space>ls :Denite -quick-match buffer<cr>
-cnoreabbrev ls :Denite -quick-match buffer<cr>
+nnoremap <space>ls :Denite buffer
+cnoreabbrev ls :Denite buffer
 
 "" Buffers
 " This allows buffers to be hidden if you've modified a buffer.
