@@ -9,10 +9,8 @@ call dein#add('Shougo/vimproc.vim',
     \{'build': 'make'})
 
 " Dark powered asynchronous completion framework for neovim
-call dein#add('Shougo/deoplete.nvim',
+call dein#add('Shougo/neocomplete.vim',
     \{'on_i': 1})
-call dein#add('carlitux/deoplete-ternjs',
-    \{'on_ft': 'javascript'})
 
 call dein#add('Shougo/neoyank.vim')
 
@@ -80,6 +78,16 @@ call dein#add('Quramy/tsuquyomi',
 call dein#add('nachumk/systemverilog.vim',
     \{'on_ft': ['verilog', 'systemverilog']})
 
+call dein#add('lervag/vimtex',
+            \{'on_ft': ['tex', 'latex', 'plaintex']})
+
+call dein#add('vim-scripts/applescript.vim',
+    \{'on_ft': ['applescript']})
+
+call dein#add('daeyun/vim-matlab',
+    \{'on_ft': ['matlab']})
+
+
 call dein#end()
 filetype plugin indent on 
 
@@ -94,6 +102,8 @@ set expandtab
 set smartcase
 set autoindent
 set smartindent
+
+set visualbell t_vb=
 
 " But tab should be 2 spaces in HTML and Smarty templates
  autocmd FileType html
@@ -138,10 +148,10 @@ set incsearch		" do incremental searching
 
 set pastetoggle=<F10>CR
 :let mapleader = ","
-nmap <leader>p :set paste<CR>"*p<CR>:set nopaste<CR>
-imap <leader>p <Esc>:set paste<CR>"*p<CR>:set nopaste<CR>
-nmap <leader>c ggVG"*yy
-vmap <leader>c "*y
+nnoremap <leader>p :set paste<CR>"*p<CR>:set nopaste<CR>
+inoremap <leader>p <Esc>:set paste<CR>"*p<CR>:set nopaste<CR>
+nnoremap <leader>c ggVG"*yy
+vnoremap <leader>c "*y
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
@@ -281,8 +291,18 @@ if executable('ag')
 endif
 
 " File searching (CtrlP)
-nnoremap <silent> ,ug :Unite file_rec/git<cr>
-nnoremap <C-p> :Unite file_rec/neovim<cr>
+nnoremap <C-p> :Unite file_rec/git<cr>
+" nnoremap <C-p> :call s:ctrlp()<cr>
+
+function! s:ctrlp()"{{{
+    if has('.git')
+        unite file_rec/git<cr>
+    else
+        unite file_rec<cr>
+    endif
+endfunction"}}}
+
+
 nnoremap <space>/ :Unite grep:.<cr>
 
 " Reindex Unite
@@ -293,8 +313,16 @@ let g:unite_source_history_yank_enable = 1
 nnoremap <space>y :Unite history/yank<cr>
 
 " Buffers View the entire list of buffers open
-nmap <leader>ls :Unite -quick-match buffer<cr>
-cnoreabbrev ls :Unite -quick-match buffer<cr>
+nmap <leader>ls :Unite -start-insert file
+cnoreabbrev ls :Unite -start-insert buffer
+autocmd FileType unite call s:unite_my_settings()
+function! s:unite_my_settings()"{{{
+ " Overwrite settings.
+
+  imap <buffer> jj      <Plug>(unite_insert_leave)
+  " Runs "split" action by <C-s>.
+  imap <silent><buffer><expr> <C-s>     unite#do_action('split')
+endfunction"}}}
 
 "" Buffers
 " This allows buffers to be hidden if you've modified a buffer.
@@ -321,8 +349,49 @@ nnoremap <leader>t :tabnew<cr>
 "" Tagbar
 nmap <F8> :TagbarToggle<CR>
 
-"" Deoplete
-let g:deoplete#enable_at_startup = 1
+"" Neocomplete
+" Disable AutoComplPop.
+" let g:acp_enableAtStartup = 0
+"
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
+" Use smartcase.
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+
+"AutoComplPop like behavior.
+let g:neocomplete#enable_auto_select = 1
+
+
+"" Vimtex
+let g:vimtex_fold_enabled = 1
+nnoremap <localleader>lt :<c-u>Unite vimtex_toc<cr>
+nnoremap <localleader>ly :<c-u>Unite vimtex_labels<cr>
+
+let g:vimtex_view_general_viewer
+            \ = '/Applications/Skim.app/Contents/SharedSupport/displayline'
+let g:vimtex_view_general_options = '-r @line @pdf @tex'
+
+" This adds a callback hook that updates Skim after compilation
+let g:vimtex_latexmk_callback_hooks = ['UpdateSkim']
+function! UpdateSkim(status)
+    if !a:status | return | endif
+
+    let l:out = b:vimtex.out()
+    let l:tex = expand('%:p')
+    let l:cmd = [g:vimtex_view_general_viewer, '-r']
+    if !empty(system('pgrep Skim'))
+        call extend(l:cmd, ['-g'])
+    endif
+    if has('nvim')
+        call jobstart(l:cmd + [line('.'), l:out, l:tex])
+    elseif has('job')
+        call job_start(l:cmd + [line('.'), l:out, l:tex])
+    else
+        call system(join(l:cmd + [line('.'), shellescape(l:out), shellescape(l:tex)], ' '))
+    endif
+endfunction
 
 "" TODO fix this if statement
 "if filereadable("~/.vimrc_local")
