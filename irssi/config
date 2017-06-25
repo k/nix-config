@@ -38,7 +38,7 @@ servers = (
     password = "zoku.EwiKVr5t21N8hRMxetRA";
     use_ssl = "yes";
     ssl_verify = "no";
-    autoconnect = "no";
+    autoconnect = "yes";
   }
 );
 
@@ -115,7 +115,8 @@ chatnets = {
 
 channels = (
   { name = "#ruhack"; chatnet = "Freenode"; autojoin = "Yes"; },
-  { name = "#iOSdev"; chatnet = "Freenode"; autojoin = "yes"; }
+  { name = "#iOSdev"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#openkinect"; chatnet = "Freenode"; autojoin = "yes"; }
 );
 
 aliases = {
