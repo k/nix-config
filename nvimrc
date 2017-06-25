@@ -8,7 +8,7 @@ call dein#add('Shougo/vimproc.vim',
 
 " Dark powered asynchronous completion framework for neovim
 call dein#add('Shougo/deoplete.nvim',
-    \{'on_i': 1})
+    \{'on_event': 'InsertEnter'})
 call dein#add('carlitux/deoplete-ternjs',
     \{'on_ft': 'javascript'})
 
@@ -21,10 +21,8 @@ call dein#add('neomake/neomake')
 call dein#add('Shougo/denite.nvim')
 
 " Status line at bottom
-call dein#add('bling/vim-airline')
-
-" Show buffers at top and side list
-call dein#add('jeetsukumaran/vim-buffergator')
+call dein#add('vim-airline/vim-airline')
+call dein#add('vim-airline/vim-airline-themes')
 
 " Adds git functionality to vim
 call dein#add('tpope/vim-fugitive')
@@ -43,10 +41,14 @@ call dein#add('scrooloose/nerdcommenter')
 
 " File System tree 
 call dein#add('scrooloose/nerdtree',
-      \{'on_cmd': 'NERDTreeToggle'})
+            \{'on_cmd': 'NERDTreeToggle'})
 
 " Shows +/-/~ in left column
 call dein#add('airblade/vim-gitgutter')
+
+" Taglist for jumping to definition
+call dein#add('vim-scripts/taglist.vim',
+            \{'on_ft': ['java', 'python', 'c', 'c++', 'cpp', 'javascript']})
 
 " Window manager for vim splits
 call dein#add('captbaritone/dwm.vim' )
@@ -54,14 +56,25 @@ call dein#add('captbaritone/dwm.vim' )
 " Syntax and scripts for Lilypond
 call dein#add('qrps/lilypond-vim')
 
+" Java completion
+"call dein#add('artur-shaik/vim-javacomplete2',
+            "\{'on_ft': 'java'})
+
+" Java class browser
+call dein#add('vim-scripts/JavaBrowser',
+            \{'on_ft': 'java'})
+
 " Javascript, impoved syntax highlighting and indentation
-call dein#add('pangloss/vim-javascript')
+call dein#add('pangloss/vim-javascript',
+            \{'on_ft': 'javascript'})
 
 " Coffeescript support
-call dein#add('kchmck/vim-coffee-script')
+call dein#add('kchmck/vim-coffee-script',
+            \{'on_ft': 'coffeescript'})
 
 " Angular.js
-call dein#add('burnettk/vim-angular')
+call dein#add('burnettk/vim-angular',
+            \{'on_ft': 'js'})
 
 " Semantic Highlighting
 " Plugin 'jaxbot/semantic-highlight.vim'
@@ -79,13 +92,17 @@ call dein#add('nachumk/systemverilog.vim',
     \{'on_ft': ['verilog', 'systemverilog']})
 
 call dein#add('lervag/vimtex',
-            \{'on_ft': ['tex', 'latex', 'plaintex']})
+    \{'on_ft': ['tex', 'latex', 'plaintex']})
 
 call dein#add('vim-scripts/applescript.vim',
     \{'on_ft': ['applescript']})
 
 call dein#add('daeyun/vim-matlab',
     \{'on_ft': ['matlab']})
+
+" JSX highlighting
+call dein#add('mxw/vim-jsx',
+            \{'on_ft': ['jsx']})
 
 call dein#end()
 filetype plugin indent on 
@@ -103,28 +120,34 @@ set autoindent
 set nosmartindent
 
 " But tab should be 2 spaces in HTML and Smarty templates
- autocmd FileType html
-   \ setlocal shiftwidth=4 |
-   \ setlocal tabstop=4 |
-   \ setlocal foldmethod=indent
- autocmd FileType htmldjango
-   \ setlocal shiftwidth=4 |
-   \ setlocal tabstop=4 |
-   \ setlocal foldmethod=indent
- autocmd FileType smarty  
-   \ setlocal shiftwidth=2 |
-   \ setlocal tabstop=2
- autocmd FileType jade 
-   \ setlocal shiftwidth=2 |
-   \ setlocal tabstop=2 |
-   \ setlocal noexpandtab
- autocmd FileType ruby
-   \ setlocal tabstop=2 |
-   \ setlocal shiftwidth=2
- autocmd FileType python
-   \ setlocal shiftwidth=4 |
-   \ setlocal tabstop=4 |
-   \ setlocal softtabstop=4
+autocmd FileType html,xml
+            \ setlocal shiftwidth=4 |
+            \ setlocal tabstop=4 |
+            \ setlocal foldmethod=indent
+autocmd FileType htmldjango
+            \ setlocal shiftwidth=4 |
+            \ setlocal tabstop=4 |
+            \ setlocal foldmethod=indent
+autocmd FileType smarty  
+            \ setlocal shiftwidth=2 |
+            \ setlocal tabstop=2
+autocmd FileType jade 
+            \ setlocal shiftwidth=2 |
+            \ setlocal tabstop=2 |
+            \ setlocal noexpandtab
+autocmd FileType ruby
+            \ setlocal tabstop=2 |
+            \ setlocal shiftwidth=2
+autocmd FileType python
+            \ setlocal shiftwidth=4 |
+            \ setlocal tabstop=4 |
+            \ setlocal softtabstop=4
+autocmd FileType tex
+            \ let g:airline#extensions#vimtex#enabled = 1
+autocmd FileType ruby
+            \ setlocal shiftwidth=2 |
+            \ setlocal tabstop=2 |
+            \ setlocal softtabstop=2
 
 "  Shows all options
 set wildmenu
@@ -257,8 +280,19 @@ nmap <leader>d :NERDTreeToggle<CR>
 " Run :Neomake! on every write
 autocmd! BufWritePost * Neomake
 
+" Java
+let g:neomake_java_enabled_makers = []
+augroup my_neomake_gradle
+  au!
+  au BufWritePost *.java Neomake! gradle
+augroup END
+
 " JS
-let g:neomake_javascript_enabled_makers=["jshint"]
+let g:neomake_javascript_enabled_makers=["eslint"]
+" load local eslint in the project root
+" modified from https://github.com/mtscout6/syntastic-local-eslint.vim
+let s:eslint_path = system('PATH=$(npm bin):$PATH && which eslint')
+let g:neomake_javascript_eslint_exe = substitute(s:eslint_path, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
 
 " Coffee
 let g:neomake_coffee_enabled_makers=["coffeelint"]
@@ -289,6 +323,7 @@ let g:airline#extensions#tabline#enabled = 1
 
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
+
 
 "" Denite
 
