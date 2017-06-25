@@ -106,7 +106,7 @@ set smartindent
 set visualbell t_vb=
 
 " But tab should be 2 spaces in HTML and Smarty templates
- autocmd FileType html
+ autocmd FileType html,xml
    \ setlocal shiftwidth=4 |
    \ setlocal tabstop=4 |
    \ setlocal foldmethod=indent
