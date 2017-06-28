@@ -1,4 +1,3 @@
-set nocompatible
 set runtimepath+=~/.config/nvim/dein/repos/github.com/Shougo/dein.vim " path to dein.vim
 
 call dein#begin(expand('~/.config/nvim/dein')) " plugins' root path
@@ -11,6 +10,13 @@ call dein#add('Shougo/deoplete.nvim',
     \{'on_event': 'InsertEnter'})
 call dein#add('carlitux/deoplete-ternjs',
     \{'on_ft': 'javascript'})
+
+" Code Snippets
+call dein#add('SirVer/ultisnips',
+    \{'on_event': 'InsertEnter'})
+
+" Customize vim in repos, saves to chosen dir
+call dein#add('k/repo-vimrc')
 
 call dein#add('Shougo/neoyank.vim')
 
@@ -57,12 +63,15 @@ call dein#add('captbaritone/dwm.vim' )
 call dein#add('qrps/lilypond-vim')
 
 " Java completion
-"call dein#add('artur-shaik/vim-javacomplete2',
-            "\{'on_ft': 'java'})
+call dein#add('artur-shaik/vim-javacomplete2',
+            \{'on_ft': 'java'})
 
 " Java class browser
 call dein#add('vim-scripts/JavaBrowser',
             \{'on_ft': 'java'})
+
+call dein#add('vim-scripts/JavaDecompiler.vim',
+            \{'on_ft': 'class'})
 
 " Javascript, impoved syntax highlighting and indentation
 call dein#add('pangloss/vim-javascript',
@@ -174,7 +183,7 @@ set clipboard=unnamed
 
 set pastetoggle=<F10>CR
 nmap <leader>p :set paste<CR>"*p<CR>:set nopaste<CR>
-"imap <leader>p <Esc>:set paste<CR>"*p<CR>:set nopaste<CR>
+imap <leader>p <Esc>:set paste<CR>"*p<CR>:set nopaste<CR>
 nmap <leader>c ggVG"*yy
 vmap <leader>c "*y
 
@@ -275,10 +284,18 @@ filetype on
 "" NERDTree
 nmap <leader>d :NERDTreeToggle<CR>
 
-"" Neomake
+"" Repo-vimrc
+let g:repo_vimrc_dir = '~/.config/repo_nvimrc/'
+let g:repo_vimrc_ext = '.nvimrc'
 
+"" Neomake
 " Run :Neomake! on every write
 autocmd! BufWritePost * Neomake
+
+let g:neomake_open_list=1
+
+" Vimscript
+let g:neomake_vimscript_enabled_makers = ['vint']
 
 " Java
 let g:neomake_java_enabled_makers = []
@@ -293,6 +310,11 @@ let g:neomake_javascript_enabled_makers=["eslint"]
 " modified from https://github.com/mtscout6/syntastic-local-eslint.vim
 let s:eslint_path = system('PATH=$(npm bin):$PATH && which eslint')
 let g:neomake_javascript_eslint_exe = substitute(s:eslint_path, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
+let s:flow_path = './' . finddir('.git', ';') . '/../node_modules/.bin/flow'
+if len(exepath(s:flow_path)) > 0
+    let g:neomake_javascript_flow_exe = s:flow_path
+    let g:neomake_javascript_enabled_makers += ['flow']
+endif
 
 " Coffee
 let g:neomake_coffee_enabled_makers=["coffeelint"]
@@ -324,9 +346,7 @@ let g:airline#extensions#tabline#enabled = 1
 " Show just the filename
 let g:airline#extensions#tabline#fnamemod = ':t'
 
-
 "" Denite
-
 " Change matchers.
 call denite#custom#source(
 \ 'file_mru', 'matchers', ['matcher_fuzzy', 'matcher_project_files'])
@@ -354,6 +374,7 @@ call denite#custom#var('file_rec/git', 'command',
             \ ['git', 'ls-files', '-co', '--exclude-standard'])
 nnoremap <silent> <C-p> :<C-u>Denite
             \ `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
+nnoremap <silent> <leader>o :<C-u>Denite file_rec<CR>
 
 nnoremap <space>/ :Denite grep:.<cr>
 
@@ -376,6 +397,8 @@ set hidden
 " To open a new empty buffer
 " This replaces :tabnew which I used to bind to this mapping
 nmap <leader>n :enew<cr>
+
+nmap <leader>bd :bp\|bd #<CR>
 
 " Move to the next buffer
 nmap <leader>l :bnext<CR>
@@ -425,12 +448,63 @@ function! UpdateSkim(status)
     endif
 endfunction
 
+" Rerun ctags
+nnoremap  <silent> <leader>gt :call jobstart('ctags -R -f ./.git/tags . ')<CR>
+nnoremap  <silent> <leader>jt :call jobstart('ctags -R --language-force=java -f ./.git/.tags .')<CR>
+autocmd FileType java call LoadJavaTags()
+function! LoadJavaTags()
+    if filereadable("./.git/.tags")
+        set tags=./.git/.tags
+    endif
+endfunction
+
+" Javacomplete2
+if filereadable("./gradlew")
+    let g:JavaComplete_GradleExecutable = './gradlew'
+endif
+" TODO: Put into augroup
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
+
+nmap <localleader>jI <Plug>(JavaComplete-Imports-AddMissing)
+nmap <localleader>jR <Plug>(JavaComplete-Imports-RemoveUnused)
+nmap <localleader>ji <Plug>(JavaComplete-Imports-AddSmart)
+nmap <localleader>jii <Plug>(JavaComplete-Imports-Add)
+
+imap <C-j>I <Plug>(JavaComplete-Imports-AddMissing)
+imap <C-j>R <Plug>(JavaComplete-Imports-RemoveUnused)
+imap <C-j>i <Plug>(JavaComplete-Imports-AddSmart)
+imap <C-j>ii <Plug>(JavaComplete-Imports-Add)
+
+nmap <localleader>jM <Plug>(JavaComplete-Generate-AbstractMethods)
+
+imap <C-j>jM <Plug>(JavaComplete-Generate-AbstractMethods)
+
+nmap <localleader>jA <Plug>(JavaComplete-Generate-Accessors)
+nmap <localleader>js <Plug>(JavaComplete-Generate-AccessorSetter)
+nmap <localleader>jg <Plug>(JavaComplete-Generate-AccessorGetter)
+nmap <localleader>ja <Plug>(JavaComplete-Generate-AccessorSetterGetter)
+nmap <localleader>jts <Plug>(JavaComplete-Generate-ToString)
+nmap <localleader>jeq <Plug>(JavaComplete-Generate-EqualsAndHashCode)
+nmap <localleader>jc <Plug>(JavaComplete-Generate-Constructor)
+nmap <localleader>jcc <Plug>(JavaComplete-Generate-DefaultConstructor)
+
+imap <C-j>s <Plug>(JavaComplete-Generate-AccessorSetter)
+imap <C-j>g <Plug>(JavaComplete-Generate-AccessorGetter)
+imap <C-j>a <Plug>(JavaComplete-Generate-AccessorSetterGetter)
+
+vmap <localleader>js <Plug>(JavaComplete-Generate-AccessorSetter)
+vmap <localleader>jg <Plug>(JavaComplete-Generate-AccessorGetter)
+vmap <localleader>ja <Plug>(JavaComplete-Generate-AccessorSetterGetter)
+
+nmap <silent> <buffer> <localleader>jn <Plug>(JavaComplete-Generate-NewClass)
+nmap <silent> <buffer> <localleader>jN <Plug>(JavaComplete-Generate-ClassInFile)
+
 
 "" TODO fix this if statement
 "if filereadable("~/.vimrc_local")
 source ~/.vimrc_local
 "endif
-
+"
 if has('nvim')
     tnoremap <Esc> <C-\><C-n>
 endif
