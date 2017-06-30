@@ -1,118 +1,131 @@
 set runtimepath+=~/.config/nvim/dein/repos/github.com/Shougo/dein.vim " path to dein.vim
 
 call dein#begin(expand('~/.config/nvim/dein')) " plugins' root path
-call dein#add('Shougo/dein.vim')
-call dein#add('Shougo/vimproc.vim', 
-    \{'build': 'make'})
+    call dein#add('Shougo/dein.vim')
+    call dein#add('Shougo/vimproc.vim', 
+                \{'build': 'make'})
 
-" Dark powered asynchronous completion framework for neovim
-call dein#add('Shougo/deoplete.nvim',
-    \{'on_event': 'InsertEnter'})
-call dein#add('carlitux/deoplete-ternjs',
-    \{'on_ft': 'javascript'})
+    " Dark powered asynchronous completion framework for neovim
+    call dein#add('Shougo/deoplete.nvim',
+                \{'on_event': 'InsertEnter'})
+    call dein#add('carlitux/deoplete-ternjs',
+                \{'on_ft': ['javascript', 'javascript.jsx']})
 
-" Code Snippets
-call dein#add('SirVer/ultisnips',
-    \{'on_event': 'InsertEnter'})
+    " Code Snippets
+    call dein#add('SirVer/ultisnips',
+                \{'on_event': 'InsertEnter'})
 
-" Customize vim in repos, saves to chosen dir
-call dein#add('k/repo-vimrc')
+    " Customize vim in repos, saves to chosen dir
+    call dein#add('k/repo-vimrc')
 
-call dein#add('Shougo/neoyank.vim')
+    call dein#add('Shougo/neoyank.vim')
 
-" Syntastic but uses nvim asyncronous job handling
-call dein#add('neomake/neomake')
+    " Syntastic but uses nvim asyncronous job handling
+    call dein#add('neomake/neomake')
 
-" Like ctrlp but is customizable and integrates more sources
-call dein#add('Shougo/denite.nvim')
+    " Neoformat
+    call dein#add('sbdchd/neoformat')
 
-" Status line at bottom
-call dein#add('vim-airline/vim-airline')
-call dein#add('vim-airline/vim-airline-themes')
+    " Like ctrlp but is customizable and integrates more sources
+    call dein#add('Shougo/denite.nvim')
 
-" Adds git functionality to vim
-call dein#add('tpope/vim-fugitive')
+    " Status line at bottom
+    call dein#add('vim-airline/vim-airline')
+    call dein#add('vim-airline/vim-airline-themes')
 
-" Adds syntax, filetype, indent files for git files; gitcommit, etc.
-call dein#add('tpope/vim-git')
+    " Adds git functionality to vim
+    call dein#add('tpope/vim-fugitive')
 
-" Macros for editing encapsulating chars 
-call dein#add('tpope/vim-surround')
+    " Adds syntax, filetype, indent files for git files; gitcommit, etc.
+    call dein#add('tpope/vim-git')
 
-" Automatic session tracking
-call dein#add('tpope/vim-obsession')
+    " Macros for editing encapsulating chars 
+    call dein#add('tpope/vim-surround')
 
-" Commenting macros
-call dein#add('scrooloose/nerdcommenter')
+    " Automatic session tracking
+    call dein#add('tpope/vim-obsession')
 
-" File System tree 
-call dein#add('scrooloose/nerdtree',
-            \{'on_cmd': 'NERDTreeToggle'})
+    " Automatic tab size detector
+    call dein#add('tpope/vim-sleuth')
 
-" Shows +/-/~ in left column
-call dein#add('airblade/vim-gitgutter')
+    " Vim plugin helper
+    call dein#add('tpope/vim-scriptease',
+                \{'on_ft': ['vim']})
 
-" Taglist for jumping to definition
-call dein#add('vim-scripts/taglist.vim',
-            \{'on_ft': ['java', 'python', 'c', 'c++', 'cpp', 'javascript']})
+    " Commenting macros
+    call dein#add('scrooloose/nerdcommenter')
 
-" Window manager for vim splits
-call dein#add('captbaritone/dwm.vim' )
+    " File System tree 
+    call dein#add('scrooloose/nerdtree',
+                \{'on_cmd': 'NERDTreeToggle'})
 
-" Syntax and scripts for Lilypond
-call dein#add('qrps/lilypond-vim')
+    " Shows +/-/~ in left column
+    call dein#add('airblade/vim-gitgutter')
 
-" Java completion
-call dein#add('artur-shaik/vim-javacomplete2',
-            \{'on_ft': 'java'})
+    " Taglist for jumping to definition
+    call dein#add('vim-scripts/taglist.vim',
+                \{'on_ft': ['java', 'python', 'c', 'c++', 'cpp', 'javascript']})
 
-" Java class browser
-call dein#add('vim-scripts/JavaBrowser',
-            \{'on_ft': 'java'})
+    " Window manager for vim splits
+    call dein#add('captbaritone/dwm.vim' )
 
-call dein#add('vim-scripts/JavaDecompiler.vim',
-            \{'on_ft': 'class'})
+    " Syntax and scripts for Lilypond
+    call dein#add('qrps/lilypond-vim')
 
-" Javascript, impoved syntax highlighting and indentation
-call dein#add('pangloss/vim-javascript',
-            \{'on_ft': 'javascript'})
+    " Java completion
+    call dein#add('artur-shaik/vim-javacomplete2',
+                \{'on_ft': 'java'})
 
-" Coffeescript support
-call dein#add('kchmck/vim-coffee-script',
-            \{'on_ft': 'coffeescript'})
+    " Java class browser
+    call dein#add('vim-scripts/JavaBrowser',
+                \{'on_ft': 'java'})
 
-" Angular.js
-call dein#add('burnettk/vim-angular',
-            \{'on_ft': 'js'})
+    call dein#add('vim-scripts/JavaDecompiler.vim',
+                \{'on_ft': 'class'})
 
-" Semantic Highlighting
-" Plugin 'jaxbot/semantic-highlight.vim'
+    " Javascript, impoved syntax highlighting and indentation
+    call dein#add('pangloss/vim-javascript',
+                \{'on_ft': ['javascript', 'javascript.jsx']})
 
-" Typescript syntax highlighting
-call dein#add('leafgarland/typescript-vim',
-    \{'on_ft': 'typescript'})
+    " Vim-flow
+    call dein#add('flowtype/vim-flow',
+                \{'on_cmd': ':FlowJumpToDef'})
 
-" Typescript auto completion
-call dein#add('Quramy/tsuquyomi',
-    \{'on_ft': 'typescript'})
+    " Coffeescript support
+    call dein#add('kchmck/vim-coffee-script',
+                \{'on_ft': 'coffeescript'})
 
-" System Verilog syntax highlighting
-call dein#add('nachumk/systemverilog.vim',
-    \{'on_ft': ['verilog', 'systemverilog']})
+    " Angular.js
+    call dein#add('burnettk/vim-angular',
+                \{'on_cmd': 'Angular'})
 
-call dein#add('lervag/vimtex',
-    \{'on_ft': ['tex', 'latex', 'plaintex']})
+    " Typescript syntax highlighting
+    call dein#add('leafgarland/typescript-vim',
+                \{'on_ft': 'typescript'})
 
-call dein#add('vim-scripts/applescript.vim',
-    \{'on_ft': ['applescript']})
+    " Typescript auto completion
+    call dein#add('Quramy/tsuquyomi',
+                \{'on_ft': 'typescript'})
 
-call dein#add('daeyun/vim-matlab',
-    \{'on_ft': ['matlab']})
+    " System Verilog syntax highlighting
+    call dein#add('nachumk/systemverilog.vim',
+                \{'on_ft': ['verilog', 'systemverilog']})
 
-" JSX highlighting
-call dein#add('mxw/vim-jsx',
-            \{'on_ft': ['jsx']})
+    " Latex plugin
+    call dein#add('lervag/vimtex',
+                \{'on_ft': ['tex', 'latex', 'plaintex']})
 
+    " Applescript syntax highlighting
+    call dein#add('vim-scripts/applescript.vim',
+                \{'on_ft': ['applescript']})
+
+    " MATLAB syntax highlighting
+    call dein#add('daeyun/vim-matlab',
+                \{'on_ft': ['matlab']})
+
+    " JSX highlighting
+    call dein#add('mxw/vim-jsx',
+                \{'on_ft': ['javascript', 'javascript.jsx']})
 call dein#end()
 filetype plugin indent on 
 
@@ -122,53 +135,45 @@ set nowritebackup
 filetype off
 
 set tabstop=4 " set tabstop at 4
-set shiftwidth=4 " 
+set shiftwidth=4
 set expandtab
 set smartcase
 set autoindent
+set complete-=i
 set nosmartindent
 
-" But tab should be 2 spaces in HTML and Smarty templates
-autocmd FileType html,xml
-            \ setlocal shiftwidth=4 |
-            \ setlocal tabstop=4 |
-            \ setlocal foldmethod=indent
-autocmd FileType htmldjango
-            \ setlocal shiftwidth=4 |
-            \ setlocal tabstop=4 |
-            \ setlocal foldmethod=indent
-autocmd FileType smarty  
-            \ setlocal shiftwidth=2 |
-            \ setlocal tabstop=2
-autocmd FileType jade 
-            \ setlocal shiftwidth=2 |
-            \ setlocal tabstop=2 |
-            \ setlocal noexpandtab
-autocmd FileType ruby
-            \ setlocal tabstop=2 |
-            \ setlocal shiftwidth=2
-autocmd FileType python
-            \ setlocal shiftwidth=4 |
-            \ setlocal tabstop=4 |
-            \ setlocal softtabstop=4
-autocmd FileType tex
-            \ let g:airline#extensions#vimtex#enabled = 1
-autocmd FileType ruby
-            \ setlocal shiftwidth=2 |
-            \ setlocal tabstop=2 |
-            \ setlocal softtabstop=2
+set nrformats-=ocatal
+set incsearch
 
-"  Shows all options
 set wildmenu
 set wildmode=longest,list,full
 
+set laststatus=2
+set ruler
 set number
 set cursorline
+
+set scrolloff=1
+set sidescrolloff=5
+
+set autoread
+
 colors elflord
 
+" Allow color schemes to do bright colors without forcing bold.
+if &t_Co == 8 && $TERM !~# '^linux\|^Eterm'
+  set t_Co=16
+endif
+
+set history=1000
+set tabpagemax=50
+set viminfo^=!
+
+set sessionoptions-=options
+
 " Leaders
-let mapleader = ","
-let maplocalleader = "-"
+let g:mapleader = ','
+let g:maplocalleader = '-'
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -193,16 +198,16 @@ inoremap <C-U> <C-G>u<C-U>
 
 " In many terminal emulators the mouse works just fine, thus enable it.
 if has('mouse')
-  set mouse=a
+    set mouse=a
 endif
 
-set dir=~/.vim/swp
+set directory=~/.vim/swp
 
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
-if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
+if &t_Co > 2 || has('gui_running')
+    syntax on
+    set hlsearch
 endif
 
 " Clear highlights
@@ -212,45 +217,73 @@ nnoremap <leader><leader> :nohl<cr>
 nnoremap <leader>w :%s/\s\+$//<cr>
 
 " Only do this part when compiled with support for autocommands.
-if has("autocmd")
+if has('autocmd')
+    " Enable file type detection.
+    " Use the default filetype settings, so that mail gets 'tw' set to 72,
+    " 'cindent' is on in C files, etc.
+    " Also load indent files, to automatically do language-dependent indenting.
+    filetype plugin indent on
 
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
+    " Put these in an autocmd group, so that we can delete them easily.
+    augroup vimrcEx
+        au!
 
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-  au!
+        " When editing a file, always jump to the last known cursor position.
+        " Don't do it when the position is invalid or when inside an event handler
+        " (happens when dropping a file on gvim).
+        " Also don't do it when the mark is in the first line, that is the default
+        " position when opening a file.
+        autocmd BufReadPost *
+                    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+                    \   exe "normal! g`\"" |
+                    \ endif
 
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
+    augroup END
 
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  " Also don't do it when the mark is in the first line, that is the default
-  " position when opening a file.
-  autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
-
-  augroup END
-
-else
-
-  set autoindent		" always set autoindenting on
-
+    " But tab should be 2 spaces in HTML and Smarty templates
+    augroup files
+        " For all text files set 'textwidth' to 78 characters.
+        autocmd FileType text setlocal textwidth=78
+        autocmd FileType vim setlocal foldmethod=indent
+        autocmd FileType html,xml
+                    \ setlocal shiftwidth=4 |
+                    \ setlocal tabstop=4 |
+                    \ setlocal foldmethod=indent
+        autocmd FileType htmldjango
+                    \ setlocal shiftwidth=4 |
+                    \ setlocal tabstop=4 |
+                    \ setlocal foldmethod=indent
+        autocmd FileType smarty  
+                    \ setlocal shiftwidth=2 |
+                    \ setlocal tabstop=2
+        autocmd FileType jade 
+                    \ setlocal shiftwidth=2 |
+                    \ setlocal tabstop=2 |
+                    \ setlocal noexpandtab
+        autocmd FileType ruby
+                    \ setlocal tabstop=2 |
+                    \ setlocal shiftwidth=2
+        autocmd FileType python
+                    \ setlocal shiftwidth=4 |
+                    \ setlocal tabstop=4 |
+                    \ setlocal softtabstop=4
+        autocmd FileType tex
+                    \ let g:airline#extensions#vimtex#enabled = 1
+        autocmd FileType ruby
+                    \ setlocal shiftwidth=2 |
+                    \ setlocal tabstop=2 |
+                    \ setlocal softtabstop=2
+        autocmd FileType javascript
+                    \ setlocal foldmethod=syntax
+    augroup END
 endif " has("autocmd")
 
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
-if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
+if !exists(':DiffOrig')
+    command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
+                \ | wincmd p | diffthis
 endif
 
 "Bubble single lines (kicks butt)
@@ -276,240 +309,281 @@ set laststatus=2   " Always show the statusline
 " Ignore files
 set wildignore+=*/tmp/*,*.pyc,*.so,*.swp,*.zip,*/gen/*,*.tar.*,*/node_modules/*
 
+""""""""""""""""""""""""""
+""""""PLUGIN CONFIGS""""""
+""""""""""""""""""""""""""
+
 "" Lilypond
-filetype off
-set runtimepath+=/usr/local/bin/lilypond/current/vim/
-filetype on
+    filetype off
+    set runtimepath+=/usr/local/bin/lilypond/current/vim/
+    filetype on
 
 "" NERDTree
 nmap <leader>d :NERDTreeToggle<CR>
 
 "" Repo-vimrc
-let g:repo_vimrc_dir = '~/.config/repo_nvimrc/'
-let g:repo_vimrc_ext = '.nvimrc'
+    let g:repo_vimrc_dir = '~/.config/repo_nvimrc/'
+    let g:repo_vimrc_ext = '.nvimrc'
 
 "" Neomake
-" Run :Neomake! on every write
-autocmd! BufWritePost * Neomake
+    " Run :Neomake! on every write
+    augroup make
+        autocmd!
+        autocmd BufWritePost * Neomake
+    augroup END
 
-let g:neomake_open_list=1
+    let g:neomake_open_list=1
 
-" Vimscript
-let g:neomake_vimscript_enabled_makers = ['vint']
+    " Vimscript
+    let g:neomake_vimscript_enabled_makers = ['vint']
 
-" Java
-let g:neomake_java_enabled_makers = []
-augroup my_neomake_gradle
-  au!
-  au BufWritePost *.java Neomake! gradle
-augroup END
+    " Java
+    let g:neomake_java_enabled_makers = []
+    augroup my_neomake_gradle
+        au!
+        au BufWritePost *.java Neomake! gradle
+    augroup END
 
-" JS
-let g:neomake_javascript_enabled_makers=["eslint"]
-" load local eslint in the project root
-" modified from https://github.com/mtscout6/syntastic-local-eslint.vim
-let s:eslint_path = system('PATH=$(npm bin):$PATH && which eslint')
-let g:neomake_javascript_eslint_exe = substitute(s:eslint_path, '^\n*\s*\(.\{-}\)\n*\s*$', '\1', '')
-let s:flow_path = './' . finddir('.git', ';') . '/../node_modules/.bin/flow'
-if len(exepath(s:flow_path)) > 0
-    let g:neomake_javascript_flow_exe = s:flow_path
-    let g:neomake_javascript_enabled_makers += ['flow']
-endif
+    " JS
+    let g:neomake_javascript_enabled_makers=['eslint']
+    " load local eslint in the project root
+    " modified from https://github.com/mtscout6/syntastic-local-eslint.vim
 
-" Coffee
-let g:neomake_coffee_enabled_makers=["coffeelint"]
+    let s:eslint_path = fnamemodify(finddir('.git', ';') . '/../node_modules/.bin/eslint', ':p')
+    if len(exepath(s:eslint_path)) > 0
+        let g:neomake_javascript_eslint_exe = s:eslint_path
+    endif
+    let s:flow_path = fnamemodify(finddir('.git', ';') . '/../node_modules/.bin/flow', ':p')
+    if len(exepath(s:flow_path)) > 0
+        let g:neomake_javascript_flow_exe = s:flow_path
+        let g:neomake_javascript_enabled_makers += ['flow']
+    endif
 
-" Python
-let g:neomake_python_enabled_makers=["pep8"]
-let g:neomake_python_pep8_maker = {
-            \ 'args': ['--max-line-length=120']
-            \ }
+    " Coffee
+    let g:neomake_coffee_enabled_makers=['coffeelint']
 
-" Typescript
-let g:neomake_typescript_enabled_makers=["tslint", "tsc"]
+    " Python
+    let g:neomake_python_enabled_makers=['pep8']
+    let g:neomake_python_pep8_maker = {
+                \ 'args': ['--max-line-length=120']
+                \ }
 
-" Latex
-let g:neomake_tex_enabled_makers=["chktex"] " Remove lacheck because of erroneous output with verbatim sections
+    " Typescript
+    let g:neomake_typescript_enabled_makers=['tslint', 'tsc']
 
-let g:neomake_systemverilog_iverilog_maker = {
-            \ 'exe': 'iverilog',
-            \ 'args': ['-Wall', '-g2012'],
-            \ 'errorformat': '%f:%l:%c',
-            \ }
+    " Latex
+    let g:neomake_tex_enabled_makers=['chktex'] " Remove lacheck because of erroneous output with verbatim sections
 
-let g:neomake_systemverilog_enabled_makers=["iverilog"]
+    let g:neomake_systemverilog_iverilog_maker = {
+                \ 'exe': 'iverilog',
+                \ 'args': ['-Wall', '-g2012'],
+                \ 'errorformat': '%f:%l:%c',
+                \ }
+
+    let g:neomake_systemverilog_enabled_makers=['iverilog']
+
+"" Neoformat
+    let g:neoformat_enabled_javascript = []
+    let s:prettiereslint_path = fnamemodify(finddir('.git', ';') . '/../node_modules/.bin/prettier-eslint', ':p')
+    if len(exepath(s:prettiereslint_path)) > 0
+        let g:neoformat_javascript_prettiereslint = {
+                    \ 'exe': s:prettiereslint_path,
+                    \ 'args': ['--stdin', '--print-width=160', '--single-quote', '--trailing-comma=es5', '--parser=babylon', '--tab-width=4'],
+                    \ 'stdin': 1,
+                    \ }
+        let g:neoformat_enabled_javascript += ['prettiereslint']
+    elseif len(exepath('prettier-eslint')) > 0
+        let g:neoformat_javascript_prettiereslint = {
+                    \ 'exe': 'prettier-eslint',
+                    \ 'args': ['--stdin', '--print-width=160', '--single-quote', '--trailing-comma=es5', '--parser=babylon', '--tab-width=4'],
+                    \ 'stdin': 1,
+                    \ }
+        let g:neoformat_enabled_javascript += ['prettiereslint']
+    endif
+
+augroup fmt
+    autocmd!
+    autocmd BufWritePre *.js,*.jsx Neoformat
+augroup end
+
+"" Vim-flow
+    let g:flow#enable = 0
+    if len(exepath(s:flow_path)) > 0
+        let g:flow#flowpath = s:flow_path
+    endif
+    nmap <localleader>] :FlowJumpToDef<CR>
 
 "" Vim airline
-" Enable the list of buffers
-let g:airline#extensions#tabline#enabled = 1
+    " Enable the list of buffers
+    let g:airline#extensions#tabline#enabled = 1
 
-" Show just the filename
-let g:airline#extensions#tabline#fnamemod = ':t'
+    " Show just the filename
+    let g:airline#extensions#tabline#fnamemod = ':t'
 
 "" Denite
-" Change matchers.
-call denite#custom#source(
-\ 'file_mru', 'matchers', ['matcher_fuzzy', 'matcher_project_files'])
-call denite#custom#source(
-\ 'file_rec', 'matchers', ['matcher_cpsm'])
+    " Change matchers.
+    call denite#custom#source(
+                \ 'file_mru', 'matchers', ['matcher_fuzzy', 'matcher_project_files'])
+    call denite#custom#source(
+                \ 'file_rec', 'matchers', ['matcher_cpsm'])
 
-" Custom denite mappings
-call denite#custom#map('insert', '<C-s>', '<denite:do_action:vsplitswitch>', 
-            \ 'noremap', 'nowait')
+    " Custom denite mappings
+    call denite#custom#map('insert', '<C-s>', '<denite:do_action:vsplitswitch>', 
+                \ 'noremap', 'nowait')
 
-" Ag command on grep source
-if executable('ag')
-	call denite#custom#var('grep', 'command', ['ag'])
-	call denite#custom#var('grep', 'default_opts',
-			\ ['-i', '--vimgrep'])
-	call denite#custom#var('grep', 'recursive_opts', [])
-	call denite#custom#var('grep', 'pattern_opt', [])
-	call denite#custom#var('grep', 'separator', ['--'])
-	call denite#custom#var('grep', 'final_opts', [])
-endif
+    " Ag command on grep source
+    if executable('ag')
+        call denite#custom#var('grep', 'command', ['ag'])
+        call denite#custom#var('grep', 'default_opts',
+                    \ ['-i', '--vimgrep'])
+        call denite#custom#var('grep', 'recursive_opts', [])
+        call denite#custom#var('grep', 'pattern_opt', [])
+        call denite#custom#var('grep', 'separator', ['--'])
+        call denite#custom#var('grep', 'final_opts', [])
+    endif
 
-" File searching (CtrlP) (Custom with git
-call denite#custom#alias('source', 'file_rec/git', 'file_rec')
-call denite#custom#var('file_rec/git', 'command',
-            \ ['git', 'ls-files', '-co', '--exclude-standard'])
-nnoremap <silent> <C-p> :<C-u>Denite
-            \ `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
-nnoremap <silent> <leader>o :<C-u>Denite file_rec<CR>
+    " File searching (CtrlP) (Custom with git
+    call denite#custom#alias('source', 'file_rec/git', 'file_rec')
+    call denite#custom#var('file_rec/git', 'command',
+                \ ['git', 'ls-files', '-co', '--exclude-standard'])
+    nnoremap <silent> <C-p> :<C-u>Denite
+                \ `finddir('.git', ';') != '' ? 'file_rec/git' : 'file_rec'`<CR>
+    nnoremap <silent> <leader>o :<C-u>Denite file_rec<CR>
 
-nnoremap <space>/ :Denite grep:.<cr>
+    nnoremap <space>/ :Denite grep:.<cr>
 
-" Reindex Denite
-nnoremap <F5> <Plug>(denite_remake)
+    " Reindex Denite
+    nnoremap <F5> <Plug>(denite_remake)
 
-" Yank history
-let g:denite_source_history_yank_enable = 1
-nnoremap <space>y :Denite history/yank<cr>
+    " Yank history
+    let g:denite_source_history_yank_enable = 1
+    nnoremap <space>y :Denite history/yank<cr>
 
-" Buffers View the entire list of buffers open
-nnoremap <space>ls :Denite buffer
-cnoreabbrev ls :Denite buffer
+    " Buffers View the entire list of buffers open
+    nnoremap <space>ls :Denite buffer
+    cnoreabbrev ls :Denite buffer
 
 "" Buffers
-" This allows buffers to be hidden if you've modified a buffer.
-" This is almost a must if you wish to use buffers in this way.
-set hidden
+    " This allows buffers to be hidden if you've modified a buffer.
+    " This is almost a must if you wish to use buffers in this way.
+    set hidden
 
-" To open a new empty buffer
-" This replaces :tabnew which I used to bind to this mapping
-nmap <leader>n :enew<cr>
+    " To open a new empty buffer
+    " This replaces :tabnew which I used to bind to this mapping
+    nmap <leader>n :enew<cr>
 
-nmap <leader>bd :bp\|bd #<CR>
+    nmap <leader>bd :bp\|bd #<CR>
 
-" Move to the next buffer
-nmap <leader>l :bnext<CR>
+    " Move to the next buffer
+    nmap <leader>l :bnext<CR>
 
-" Move to the previous buffer
-nmap <leader>h :bprevious<CR>
+    " Move to the previous buffer
+    nmap <leader>h :bprevious<CR>
 
-" Show all open buffers and their status
-nmap <leader>bl :ls<CR>
+    " Show all open buffers and their status
+    nmap <leader>bl :ls<CR>
 
-nnoremap <leader>s :bel :sp 
-nnoremap <leader>v :bel vsp 
-nnoremap <leader>t :tabnew<cr>
+    nnoremap <leader>s :bel :sp 
+    nnoremap <leader>v :bel vsp 
+    nnoremap <leader>t :tabnew<cr>
 
-"" Tagbar
-nmap <F8> :TagbarToggle<CR>
+"" pangloss/vim-javascript
+let g:javascript_plugin_flow = 1
+
+"" mxw/vim-jsx
+let g:jsx_ext_required = 0
 
 "" Deoplete
 let g:deoplete#enable_at_startup = 1
 
 "" Vimtex
-let g:vimtex_fold_enabled = 1
-nnoremap <localleader>lt :<c-u>Denite vimtex_toc<cr>
-nnoremap <localleader>ly :<c-u>Denite vimtex_labels<cr>
+    let g:vimtex_fold_enabled = 1
+    nnoremap <localleader>lt :<c-u>Denite vimtex_toc<cr>
+    nnoremap <localleader>ly :<c-u>Denite vimtex_labels<cr>
 
-let g:vimtex_view_general_viewer
-            \ = '/Applications/Skim.app/Contents/SharedSupport/displayline'
-let g:vimtex_view_general_options = '-r @line @pdf @tex'
+    let g:vimtex_view_general_viewer
+                \ = '/Applications/Skim.app/Contents/SharedSupport/displayline'
+    let g:vimtex_view_general_options = '-r @line @pdf @tex'
 
-" This adds a callback hook that updates Skim after compilation
-let g:vimtex_latexmk_callback_hooks = ['UpdateSkim']
-function! UpdateSkim(status)
-    if !a:status | return | endif
+    " This adds a callback hook that updates Skim after compilation
+    let g:vimtex_latexmk_callback_hooks = ['UpdateSkim']
+    function! UpdateSkim(status)
+        if !a:status | return | endif
 
-    let l:out = b:vimtex.out()
-    let l:tex = expand('%:p')
-    let l:cmd = [g:vimtex_view_general_viewer, '-r']
-    if !empty(system('pgrep Skim'))
-        call extend(l:cmd, ['-g'])
+        let l:out = b:vimtex.out()
+        let l:tex = expand('%:p')
+        let l:cmd = [g:vimtex_view_general_viewer, '-r']
+        if !empty(system('pgrep Skim'))
+            call extend(l:cmd, ['-g'])
+        endif
+        if has('nvim')
+            call jobstart(l:cmd + [line('.'), l:out, l:tex])
+        elseif has('job')
+            call job_start(l:cmd + [line('.'), l:out, l:tex])
+        else
+            call system(join(l:cmd + [line('.'), shellescape(l:out), shellescape(l:tex)], ' '))
+        endif
+    endfunction
+
+"" Rerun ctags
+    nnoremap  <silent> <leader>gt :call jobstart('ctags -R -f ' . fnamemodify(finddir('.git', ';'), ':p') . 'tags .')<CR>
+    nnoremap  <silent> <leader>jt :call jobstart('ctags -R --languages=java,groovy -f ' . fnamemodify(finddir('.git', ';'), ':p') . 'tags .')<CR>
+    autocmd FileType java call LoadJavaTags()
+    function! LoadJavaTags()
+        if filereadable('./.git/.tags')
+            set tags=./.git/.tags
+        endif
+    endfunction
+
+"" Javacomplete2
+    if filereadable('./gradlew')
+        let g:JavaComplete_GradleExecutable = './gradlew'
     endif
-    if has('nvim')
-        call jobstart(l:cmd + [line('.'), l:out, l:tex])
-    elseif has('job')
-        call job_start(l:cmd + [line('.'), l:out, l:tex])
-    else
-        call system(join(l:cmd + [line('.'), shellescape(l:out), shellescape(l:tex)], ' '))
-    endif
-endfunction
 
-" Rerun ctags
-nnoremap  <silent> <leader>gt :call jobstart('ctags -R -f ./.git/tags . ')<CR>
-nnoremap  <silent> <leader>jt :call jobstart('ctags -R --language-force=java -f ./.git/.tags .')<CR>
-autocmd FileType java call LoadJavaTags()
-function! LoadJavaTags()
-    if filereadable("./.git/.tags")
-        set tags=./.git/.tags
-    endif
-endfunction
+    autocmd FileType java setlocal omnifunc=javacomplete#Complete
 
-" Javacomplete2
-if filereadable("./gradlew")
-    let g:JavaComplete_GradleExecutable = './gradlew'
+    nmap <localleader>jI <Plug>(JavaComplete-Imports-AddMissing)
+    nmap <localleader>jR <Plug>(JavaComplete-Imports-RemoveUnused)
+    nmap <localleader>ji <Plug>(JavaComplete-Imports-AddSmart)
+    nmap <localleader>jii <Plug>(JavaComplete-Imports-Add)
+
+    imap <C-j>I <Plug>(JavaComplete-Imports-AddMissing)
+    imap <C-j>R <Plug>(JavaComplete-Imports-RemoveUnused)
+    imap <C-j>i <Plug>(JavaComplete-Imports-AddSmart)
+    imap <C-j>ii <Plug>(JavaComplete-Imports-Add)
+
+    nmap <localleader>jM <Plug>(JavaComplete-Generate-AbstractMethods)
+
+    imap <C-j>jM <Plug>(JavaComplete-Generate-AbstractMethods)
+
+    nmap <localleader>jA <Plug>(JavaComplete-Generate-Accessors)
+    nmap <localleader>js <Plug>(JavaComplete-Generate-AccessorSetter)
+    nmap <localleader>jg <Plug>(JavaComplete-Generate-AccessorGetter)
+    nmap <localleader>ja <Plug>(JavaComplete-Generate-AccessorSetterGetter)
+    nmap <localleader>jts <Plug>(JavaComplete-Generate-ToString)
+    nmap <localleader>jeq <Plug>(JavaComplete-Generate-EqualsAndHashCode)
+    nmap <localleader>jc <Plug>(JavaComplete-Generate-Constructor)
+    nmap <localleader>jcc <Plug>(JavaComplete-Generate-DefaultConstructor)
+
+    imap <C-j>s <Plug>(JavaComplete-Generate-AccessorSetter)
+    imap <C-j>g <Plug>(JavaComplete-Generate-AccessorGetter)
+    imap <C-j>a <Plug>(JavaComplete-Generate-AccessorSetterGetter)
+
+    vmap <localleader>js <Plug>(JavaComplete-Generate-AccessorSetter)
+    vmap <localleader>jg <Plug>(JavaComplete-Generate-AccessorGetter)
+    vmap <localleader>ja <Plug>(JavaComplete-Generate-AccessorSetterGetter)
+
+    nmap <silent> <buffer> <localleader>jn <Plug>(JavaComplete-Generate-NewClass)
+    nmap <silent> <buffer> <localleader>jN <Plug>(JavaComplete-Generate-ClassInFile)
+
+
+if filereadable(expand('~/.vimrc_local'))
+    source ~/.vimrc_local
 endif
-" TODO: Put into augroup
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
-
-nmap <localleader>jI <Plug>(JavaComplete-Imports-AddMissing)
-nmap <localleader>jR <Plug>(JavaComplete-Imports-RemoveUnused)
-nmap <localleader>ji <Plug>(JavaComplete-Imports-AddSmart)
-nmap <localleader>jii <Plug>(JavaComplete-Imports-Add)
-
-imap <C-j>I <Plug>(JavaComplete-Imports-AddMissing)
-imap <C-j>R <Plug>(JavaComplete-Imports-RemoveUnused)
-imap <C-j>i <Plug>(JavaComplete-Imports-AddSmart)
-imap <C-j>ii <Plug>(JavaComplete-Imports-Add)
-
-nmap <localleader>jM <Plug>(JavaComplete-Generate-AbstractMethods)
-
-imap <C-j>jM <Plug>(JavaComplete-Generate-AbstractMethods)
-
-nmap <localleader>jA <Plug>(JavaComplete-Generate-Accessors)
-nmap <localleader>js <Plug>(JavaComplete-Generate-AccessorSetter)
-nmap <localleader>jg <Plug>(JavaComplete-Generate-AccessorGetter)
-nmap <localleader>ja <Plug>(JavaComplete-Generate-AccessorSetterGetter)
-nmap <localleader>jts <Plug>(JavaComplete-Generate-ToString)
-nmap <localleader>jeq <Plug>(JavaComplete-Generate-EqualsAndHashCode)
-nmap <localleader>jc <Plug>(JavaComplete-Generate-Constructor)
-nmap <localleader>jcc <Plug>(JavaComplete-Generate-DefaultConstructor)
-
-imap <C-j>s <Plug>(JavaComplete-Generate-AccessorSetter)
-imap <C-j>g <Plug>(JavaComplete-Generate-AccessorGetter)
-imap <C-j>a <Plug>(JavaComplete-Generate-AccessorSetterGetter)
-
-vmap <localleader>js <Plug>(JavaComplete-Generate-AccessorSetter)
-vmap <localleader>jg <Plug>(JavaComplete-Generate-AccessorGetter)
-vmap <localleader>ja <Plug>(JavaComplete-Generate-AccessorSetterGetter)
-
-nmap <silent> <buffer> <localleader>jn <Plug>(JavaComplete-Generate-NewClass)
-nmap <silent> <buffer> <localleader>jN <Plug>(JavaComplete-Generate-ClassInFile)
-
-
-"" TODO fix this if statement
-"if filereadable("~/.vimrc_local")
-source ~/.vimrc_local
-"endif
 "
 if has('nvim')
     tnoremap <Esc> <C-\><C-n>
 endif
 
-
 set exrc
 set secure
-
