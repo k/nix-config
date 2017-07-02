@@ -4,6 +4,10 @@ alias ll='ls -alrth'
 alias la='ls -a'
 alias grep='grep --color'
 alias v='nvim'
+if [ -n `ls ~/.agignore` ]
+then
+    alias ag='ag --path-to-agignore ~/.agignore'
+fi
 
 if [[ $OSTYPE == "darwin"* ]]
 then
