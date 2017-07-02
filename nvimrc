@@ -206,6 +206,10 @@ endif
 
 set directory=~/.vim/swp
 
+" Window Movement :h window
+noremap <C-J> <C-W>w
+noremap <C-K> <C-W>W
+
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has('gui_running')
