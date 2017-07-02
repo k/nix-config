@@ -172,8 +172,10 @@ set viminfo^=!
 set sessionoptions-=options
 
 " Leaders
-let g:mapleader = ','
-let g:maplocalleader = '-'
+  let g:mapleader = ','
+  let g:maplocalleader = '-'
+  "lowers the timeout after typing leader key
+  set timeoutlen=500
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -186,11 +188,12 @@ set incsearch		" do incremental searching
 " Set clipboard
 set clipboard=unnamed
 
-set pastetoggle=<F10>CR
-nmap <leader>p :set paste<CR>"*p<CR>:set nopaste<CR>
-imap <leader>p <Esc>:set paste<CR>"*p<CR>:set nopaste<CR>
-nmap <leader>c ggVG"*yy
-vmap <leader>c "*y
+" Pasting
+  set pastetoggle=<F10>CR
+  nmap <leader>p :set paste<CR>"*p<CR>:set nopaste<CR>
+  imap <leader>p <Esc>:set paste<CR>"*p<CR>:set nopaste<CR>
+  nmap <leader>c ggVG"*yy
+  vmap <leader>c "*y
 
 " CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
 " so that you can undo CTRL-U after inserting a line break.
@@ -287,14 +290,12 @@ if !exists(':DiffOrig')
 endif
 
 "Bubble single lines (kicks butt)
-"http://vimcasts.org/episodes/bubbling-text/
-nmap <C-Up> ddkP
-nmap <C-Down> ddp
-"Bubble multiple lines
-vmap <C-Up> xkP`[V`]
-vmap <C-Down> xp`[V`]
-"lowers the timeout after typing leader key
-set timeoutlen=500
+  "http://vimcasts.org/episodes/bubbling-text/
+  nmap <C-Up> ddkP
+  nmap <C-Down> ddp
+  "Bubble multiple lines
+  vmap <C-Up> xkP`[V`]
+  vmap <C-Down> xp`[V`]
 
 highlight Pmenu ctermfg=green ctermbg=black
 
@@ -400,11 +401,10 @@ nmap <leader>d :NERDTreeToggle<CR>
                     \ }
         let g:neoformat_enabled_javascript += ['prettiereslint']
     endif
-
-augroup fmt
-    autocmd!
-    autocmd BufWritePre *.js,*.jsx Neoformat
-augroup end
+  augroup fmt
+      autocmd!
+      autocmd BufWritePre *.js,*.jsx Neoformat
+  augroup end
 
 "" Vim-flow
     let g:flow#enable = 0
