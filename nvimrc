@@ -314,6 +314,9 @@ set laststatus=2   " Always show the statusline
 " Ignore files
 set wildignore+=*/tmp/*,*.pyc,*.so,*.swp,*.zip,*/gen/*,*.tar.*,*/node_modules/*
 
+" TODO: Run command in the location of each quickfix item (write function)
+" map that runs :lnext -> <change>
+
 """"""""""""""""""""""""""
 """"""PLUGIN CONFIGS""""""
 """"""""""""""""""""""""""
