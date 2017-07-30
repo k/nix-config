@@ -39,6 +39,8 @@ bind c:alt;shift focus ${browser}
 # alias vm 'VMware Fusion'
 # bind v:alt;shift focus ${vm}
 
+bind e:alt;shift focus 'Code'
+
 bind d:alt;shift focus 'Dash'
 
 bind t:alt;shift focus 'iTunes'
@@ -60,7 +62,6 @@ bind w:alt;shift focus 'WebStorm'
 
 bind q:alt;shift focus 'Quip'
 
-bind e:alt;shift focus 'Preview'
 
 bind v:alt;shift focus 'MacVim'
 
