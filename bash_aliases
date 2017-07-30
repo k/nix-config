@@ -16,7 +16,7 @@ alias la='ls -a'
 
 if [ -n `ls ~/.agignore` ]
 then
-    alias ag='ag --path-to-agignore ~/.agignore'
+    alias ag='ag --path-to-ignore ~/.agignore'
 fi
 
 if [ -n `which docker` ]
