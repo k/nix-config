@@ -58,7 +58,7 @@ bind v:alt;shift focus 'MacVim'
 
 # bind p:alt;shift focus 'Pocket'
 
-bind w:alt;shift focus 'WebStorm'
+bind w:alt;shift focus 'IntelliJ IDEA'
 
 bind q:alt;shift focus 'Quip'
 
