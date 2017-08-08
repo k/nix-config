@@ -51,7 +51,6 @@ export LS_COLORS
 
 
 ### Added by the Heroku Toolbelt
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/local/heroku/bin:$PATH"
 export EDITOR="vim"
 
 Black='\e[0;30m' # Black
@@ -83,3 +82,4 @@ if [ -f "${HOME}/.bash_aliases" ]; then
 fi
 
 HISTCONTROL=ignoredups
+
