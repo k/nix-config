@@ -45,12 +45,12 @@ bind d:alt;shift focus 'Dash'
 
 bind t:alt;shift focus 'iTunes'
 
-bind a:alt;shift focus 'MATLAB'
-# bind a:alt;shift focus 'AppCode'
+bind a:alt;shift focus 'Messages'
+#bind a:alt;shift focus 'MATLAB'
+#bind a:alt;shift focus 'AppCode'
 
 bind s:alt;shift focus 'Slack'
 
-bind d:alt;shift focus 'Messages'
 
 bind f:alt;shift focus 'Finder'
 
