@@ -126,6 +126,12 @@ call dein#begin(expand('~/.config/nvim/dein')) " plugins' root path
     " JSX highlighting
     call dein#add('mxw/vim-jsx',
                 \{'on_ft': ['javascript', 'javascript.jsx']})
+    " Solidity highlighting
+    call dein#add('tomlion/vim-solidity',
+                \{'on_ft': ['solidity']})
+
+    call dein#add('sheerun/vim-polyglot')
+
 call dein#end()
 filetype plugin indent on 
 
@@ -353,12 +359,12 @@ nmap <leader>d :NERDTreeToggle<CR>
     augroup END
 
     " JS
-    let g:neomake_javascript_enabled_makers=['eslint']
     " load local eslint in the project root
     " modified from https://github.com/mtscout6/syntastic-local-eslint.vim
 
     let s:eslint_path = fnamemodify(finddir('.git', ';') . '/../node_modules/.bin/eslint', ':p')
     if len(exepath(s:eslint_path)) > 0
+        let g:neomake_javascript_enabled_makers=['eslint']
         let g:neomake_javascript_eslint_exe = s:eslint_path
     endif
     let s:flow_path = fnamemodify(finddir('.git', ';') . '/../node_modules/.bin/flow', ':p')
@@ -391,27 +397,29 @@ nmap <leader>d :NERDTreeToggle<CR>
     let g:neomake_systemverilog_enabled_makers=['iverilog']
 
 "" Neoformat
-    let g:neoformat_enabled_javascript = []
-    let s:prettiereslint_path = fnamemodify(finddir('.git', ';') . '/../node_modules/.bin/prettier-eslint', ':p')
-    if len(exepath(s:prettiereslint_path)) > 0
-        let g:neoformat_javascript_prettiereslint = {
-                    \ 'exe': s:prettiereslint_path,
-                    \ 'args': ['--stdin', '--print-width=160', '--single-quote', '--trailing-comma=es5', '--parser=babylon', '--tab-width=4'],
+    let g:neoformat_enabled_javascript = ['eslint']
+    let s:eslint_path = fnamemodify(finddir('.git', ';') . '/../node_modules/.bin/eslint', ':p')
+    if len(exepath(s:eslint_path)) > 0
+        let g:neoformat_javascript_eslint = {
+                    \ 'exe': s:eslint_path,
+                    \ 'args': ['--stdin', '--fix'],
                     \ 'stdin': 1,
                     \ }
-        let g:neoformat_enabled_javascript += ['prettiereslint']
-    elseif len(exepath('prettier-eslint')) > 0
-        let g:neoformat_javascript_prettiereslint = {
-                    \ 'exe': 'prettier-eslint',
-                    \ 'args': ['--stdin', '--print-width=160', '--single-quote', '--trailing-comma=es5', '--parser=babylon', '--tab-width=4'],
+        let g:neoformat_enabled_javascript += ['eslint']
+    elseif len(exepath('eslint')) > 0
+        let g:neoformat_javascript_eslint = {
+                    \ 'exe': 'eslint',
+                    \ 'args': ['--stdin', '--fix'],
                     \ 'stdin': 1,
                     \ }
-        let g:neoformat_enabled_javascript += ['prettiereslint']
+        let g:neoformat_enabled_javascript += ['eslint']
     endif
-  augroup fmt
-      autocmd!
-      autocmd BufWritePre *.js,*.jsx Neoformat
-  augroup end
+    if len(g:neoformat_enabled_javascript) > 0
+        "augroup fmt
+            "autocmd!
+            "autocmd BufWritePre * undojoin *.js,*.jsx Neoformat
+        "augroup end
+    endif
 
 "" Vim-flow
     let g:flow#enable = 0

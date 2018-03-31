@@ -393,10 +393,9 @@ function! UpdateSkim(status)
     endif
 endfunction
 
-"" TODO fix this if statement
-"if filereadable("~/.vimrc_local")
-source ~/.vimrc_local
-"endif
+if filereadable(expand('~/.vimrc_local'))
+    source ~/.vimrc_local
+endif
 
 if has('nvim')
     tnoremap <Esc> <C-\><C-n>
