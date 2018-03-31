@@ -51,7 +51,7 @@ export LS_COLORS
 
 
 ### Added by the Heroku Toolbelt
-export EDITOR="vim"
+export EDITOR="nvim"
 
 Black='\e[0;30m' # Black
 
@@ -81,5 +81,16 @@ if [ -f "${HOME}/.bash_aliases" ]; then
   source "${HOME}/.bash_aliases"
 fi
 
-HISTCONTROL=ignoredups
+export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
+export HISTSIZE=100000                   # big big history
+export HISTFILESIZE=100000               # big big history
+shopt -s histappend                      # append to history, don't overwrite it
 
+# Save and reload the history after each command finishes
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+
+export PATH="$PATH:$HOME/go/bin"
+
+export PATH=$PATH:~/.fabric8/bin
+
+. ~/.yarn-completion
