@@ -18,7 +18,7 @@ do
     done
 
     # if you shouldn't ignore, and it's not already linked
-    if [ $shouldIgnore == false -a ! -L ~/.$filename ]
+    if [ $shouldIgnore == false ]
     then
 
         # move old versions moved to backup dir
@@ -30,7 +30,7 @@ do
 
         # create the link
         echo new link ~/.${filename} to ${DIR}/backups/${filename}
-        ln -s $DIR/$filename ~/.$filename
+        ln -f -s $DIR/$filename ~/.$filename
     fi
 done
 

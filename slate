@@ -39,19 +39,22 @@ bind c:alt;shift focus ${browser}
 # alias vm 'VMware Fusion'
 # bind v:alt;shift focus ${vm}
 
-bind e:alt;shift focus 'Atom'
+bind e:alt;shift focus 'Visual Studio Code'
+#bind v:alt;shift focus 'Code'
 bind q:alt;shift focus 'Zeplin'
 
-bind d:alt;shift focus 'Dash'
+#bind f:alt;shift focus 'Figma'
 
 bind t:alt;shift focus 'iTunes'
 
-bind a:alt;shift focus 'Messages'
+bind d:alt;shift focus 'Dash'
+bind m:alt;shift focus 'Messages'
 #bind a:alt;shift focus 'MATLAB'
-#bind a:alt;shift focus 'AppCode'
+bind a:alt;shift focus 'AppCode'
 
 bind s:alt;shift focus 'Slack'
 
+bind g:alt;shift focus 'Ganache'
 
 bind f:alt;shift focus 'Finder'
 

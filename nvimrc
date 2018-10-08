@@ -1,4 +1,4 @@
-set runtimepath+=~/.config/nvim/dein/repos/github.com/Shougo/dein.vim " path to dein.vim
+set runtimepath+=~/.cache/dein/repos/github.com/Shougo/dein.vim
 
 call dein#begin(expand('~/.config/nvim/dein')) " plugins' root path
     call dein#add('Shougo/dein.vim')
@@ -73,8 +73,8 @@ call dein#begin(expand('~/.config/nvim/dein')) " plugins' root path
     call dein#add('qrps/lilypond-vim')
 
     " Java completion
-    call dein#add('artur-shaik/vim-javacomplete2',
-                \{'on_ft': 'java'})
+    "call dein#add('artur-shaik/vim-javacomplete2',
+                "\{'on_ft': 'java'})
 
     " Java class browser
     call dein#add('vim-scripts/JavaBrowser',
@@ -131,6 +131,12 @@ call dein#begin(expand('~/.config/nvim/dein')) " plugins' root path
                 \{'on_ft': ['solidity']})
 
     call dein#add('sheerun/vim-polyglot')
+
+    call dein#add('chase/vim-ansible-yaml',
+          \{'on_ft': ['ansible', 'yaml']})
+
+    call dein#add('fatih/vim-go',
+          \{'on_ft': ['go']})
 
 call dein#end()
 filetype plugin indent on 
@@ -590,6 +596,9 @@ let g:deoplete#enable_at_startup = 1
 
     nmap <silent> <buffer> <localleader>jn <Plug>(JavaComplete-Generate-NewClass)
     nmap <silent> <buffer> <localleader>jN <Plug>(JavaComplete-Generate-ClassInFile)
+
+"" vim-polyglot
+let g:polyglot_disabled = ['graphql']
 
 
 if filereadable(expand('~/.vimrc_local'))
